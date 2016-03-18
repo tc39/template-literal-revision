@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "name": "template-literal-revision",
+  "version": "0.0.0",
+  "description": "ECMA-262 proposal to update tempalte literals",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/disnt/template-literal-revision.git"
+  },
+  "keywords": [
+    "ECMA-262",
+    "ECMAScript",
+    "template literals",
+    "proposal"
+  ],
+  "author": "Tim Disney",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "ecmarkup": "3.0.0"
+  }
+}
