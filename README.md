@@ -20,15 +20,9 @@ Breve over the h goes \u{h}ere // Illegal token!
 `
 ```
 
-A Unicode escape like `\u00FF` is allowed but `\unicode` is illegal.
-
-A Hex escape like `\xFF` is allowed but `\xerxes` is illagal.
-
-Octal literal escapes are not allowed.
-
-```js
-`bin = \0100` // Illegal token!
-```
+The problem here is that `\u` is the start of a unicode escape, but ES grammar forces it to be of the form `\u00FF` or `\u{42}`
+and considers the token `\unicode` illegal.
+Similarly `\x` is the start of a hex escape like `\xFF` but `\xerxes` is illegal. Octal literal escapes have the same problem; `\0100` is illegal.
 
 ## Proposal
 
