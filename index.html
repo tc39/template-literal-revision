@@ -3,12 +3,50 @@
 <link rel="stylesheet" href="ecmarkup.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
 <script src="ecmarkup.js"></script>
-<title>Template LIteral revision</title><script type="application/json" id="menu-search-biblio">[{"type":"clause","id":"","aoid":null,"title":"Introduction","number":"","namespace":"<no location>","location":"","key":"Introduction"},{"type":"clause","id":"sec-copyright-and-software-license","aoid":null,"title":"Copyright & Software License","number":"A","namespace":"<no location>","location":"","key":"Copyright & Software License"}]</script></head><body><div id="menu-toggle">☰</div><div id="menu"><div id="menu-search"><input type="text" id="menu-search-box" placeholder="Search..."><div id="menu-search-results" class="inactive"></div></div><div id="menu-toc"><ol class="toc"><li><span class="item-toggle-none"></span><a href="#" title="Introduction"><span class="secnum"></span> Introduction</a></li><li><span class="item-toggle-none"></span><a href="#sec-copyright-and-software-license" title="Copyright &amp; Software License"><span class="secnum">A</span> Copyright &amp; Software License</a></li></ol></div></div><h1 class="version">Stage 0 Draft / March 18, 2016</h1><h1 class="title">Template LIteral revision</h1>
+<title>Template LIteral revision</title><script type="application/json" id="menu-search-biblio">[{"type":"clause","id":"","aoid":null,"title":"Introduction","number":"","namespace":"<no location>","location":"","key":"Introduction"},{"type":"clause","id":"sec-copyright-and-software-license","aoid":null,"title":"Copyright & Software License","number":"A","namespace":"<no location>","location":"","key":"Copyright & Software License"}]</script></head><body><div id="menu-toggle">☰</div><div id="menu"><div id="menu-search"><input type="text" id="menu-search-box" placeholder="Search..."><div id="menu-search-results" class="inactive"></div></div><div id="menu-toc"><ol class="toc"><li><span class="item-toggle-none"></span><a href="#" title="Introduction"><span class="secnum"></span> Introduction</a></li><li><span class="item-toggle-none"></span><a href="#sec-copyright-and-software-license" title="Copyright &amp; Software License"><span class="secnum">A</span> Copyright &amp; Software License</a></li></ol></div></div><h1 class="version">Stage 1 Draft / May 3, 2016</h1><h1 class="title">Template LIteral revision</h1>
 
 
 <emu-intro>
   <h1><span class="secnum"></span>Introduction<span class="utils"><span class="anchor"><a href="#">#</a></span></span></h1>
-  <h2>Goals</h2>
+
+  Template literals should allow the embedding of languages (DSLs etc.). But restrictions on escape sequences make this problematic. For example, consider making a latex processor with templates:
+  
+  <pre><code class="javascript hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">latex</span>(<span class="hljs-params">strings</span>) </span>{
+  <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-keyword">let</span> <span class="hljs-built_in">document</span> = latex<span class="hljs-string">`
+\newcommand{\fun}{\textbf{Fun!}}  // works just fine
+\newcommand{\unicode}{\textbf{Unicode!}} // Illegal token!
+\newcommand{\xerxes}{\textbf{King!}} // Illegal token!
+
+Breve over the h goes \u{h}ere // Illegal token!
+`</span></code></pre>
+
+  The problem here is that <code>\u</code> is the start of a unicode escape, but ES grammar forces it to be of the form <code>\u00FF</code> or <code>\u{42}</code>
+  and considers the token <code>\unicode</code> illegal.
+  Similarly <code>\x</code> is the start of a hex escape like <code>\xFF</code> but <code>\xerxes</code> is illegal. Octal literal escapes have the same problem; <code>\0100</code> is illegal. 
+
+  <h2>Proposal Overview</h2>
+
+  Remove the restriction on escape sequences. Lifting the restriction raises the question of how to handle cooked template values that contain illegal escape sequences. Currently, cooked template values are supposed to replace escape sequences with the "Unicode code point represented by the escape sequence" but this can't happen if the escape sequence is not valid. One solution is to set the cooked value to <code>undefined</code> for template values that contain illegal escape sequences. The raw value is still accessible via <code>.raw</code> so embedded DSLs that might contain <code>undefined</code> cooked values can just use the raw string: 
+
+  <pre><code class="javascript hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tag</span>(<span class="hljs-params">strs</span>) </span>{
+  strs[<span class="hljs-number">0</span>] === <span class="hljs-literal">undefined</span>
+  strs.raw[<span class="hljs-number">0</span>] === <span class="hljs-string">"\\unicode and \\u{55}"</span>;
+}
+tag<span class="hljs-string">`\unicode and \u{55}`</span></code></pre>
+
+  Another potential solution would be to have valid escape sequences replaced but leave invalid escape sequences alone. 
+
+  <pre><code class="javascript hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tag</span>(<span class="hljs-params">strs</span>) </span>{
+  strs[<span class="hljs-number">0</span>] === <span class="hljs-string">"\\unicode and U"</span>
+  strs.raw[<span class="hljs-number">0</span>] === <span class="hljs-string">"\\unicode and \\u{55}"</span>;
+}
+tag<span class="hljs-string">`\unicode and \u{55}`</span></code></pre>
+
+  This seems like a bad solution. Ostensibly, any DSL that needs <code>\unicode</code> or similar to be valid will not care about <emu-val>any</emu-val> escape sequences and will just use the raw value. Having inconsistent escaping behavior is a potential footgun. If programmer is building a DSL that relies on <code>\unicode</code> cooking literally, they might be surprised to discover to find <code>\uface</code> is cooked into <code>龜</code>. It seems like the best choice is just to set the cooked value to <code>undefined</code> when an invalid escape sequence is encountered and force DSLs writers who care about this to use the raw value.
+
 </emu-intro>
 
 
