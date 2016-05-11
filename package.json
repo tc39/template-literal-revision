@@ -20,6 +20,6 @@
   "author": "Tim Disney",
   "license": "UNLICENSED",
   "devDependencies": {
-    "ecmarkup": "3.0.0"
+    "ecmarkup": "^3.2.2"
   }
 }

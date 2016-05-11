@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
 <script src="ecmarkup.js"></script>
 <pre class=metadata>
-title: Template LIteral revision
+title: Template Literal Revision
 status: proposal
 stage: 1
 contributors: Tim Disney
@@ -16,9 +16,10 @@ toc: true
 <emu-intro>
   <h1>Introduction</h1>
 
-  Template literals should allow the embedding of languages (DSLs etc.). But restrictions on escape sequences make this problematic.
+  <p>Template literals should allow the embedding of languages (DSLs etc.). But restrictions on escape sequences make this problematic.</p>
 
-  For example, consider making a latex processor with templates:
+  <p>For example, consider making a latex processor with templates:</p>
+
   <pre><code class="javascript">
     function latex(strings) {
       // ...
@@ -31,19 +32,20 @@ toc: true
 
     Breve over the h goes \u{h}ere // Illegal token!
     `
+
   </code></pre>
 
-  The problem here is that `\u` is the start of a unicode escape, but ES grammar forces it to be of the form `\u00FF` or `\u{42}`
+  <p>The problem here is that `\u` is the start of a unicode escape, but ES grammar forces it to be of the form `\u00FF` or `\u{42}`
   and considers the token `\unicode` illegal.
-  Similarly `\x` is the start of a hex escape like `\xFF` but `\xerxes` is illegal. Octal literal escapes have the same problem; `\0100` is illegal.
+  Similarly `\x` is the start of a hex escape like `\xFF` but `\xerxes` is illegal. Octal literal escapes have the same problem; `\0100` is illegal.</p>
 
   <h2>Proposal Overview</h2>
 
-  Remove the restriction on escape sequences.
+  <p>Remove the restriction on escape sequences.</p>
 
-  Lifting the restriction raises the question of how to handle cooked template values that contain illegal escape sequences. Currently, cooked template values are supposed to replace escape sequences with the "Unicode code point represented by the escape sequence" but this can't happen if the escape sequence is not valid.
+  <p>Lifting the restriction raises the question of how to handle cooked template values that contain illegal escape sequences. Currently, cooked template values are supposed to replace escape sequences with the "Unicode code point represented by the escape sequence" but this can't happen if the escape sequence is not valid.</p>
 
-  The proposed solution is to set the cooked value to `undefined` for template values that contain illegal escape sequences. The raw value is still accessible via `.raw` so embedded DSLs that might contain `undefined` cooked values can just use the raw string:
+  <p>The proposed solution is to set the cooked value to `undefined` for template values that contain illegal escape sequences. The raw value is still accessible via `.raw` so embedded DSLs that might contain `undefined` cooked values can just use the raw string:</p>
 
   <pre><code class="javascript">
     function tag(strs) {
@@ -53,16 +55,678 @@ toc: true
     tag`\unicode and \u{55}`
   </code></pre>
 
-  This loosening of the escape sequence restriction only applies to tagged template literals; untagged templates still throw an early error for invalid escape sequences:
+  <p>This loosening of the escape sequence restriction only applies to tagged template literals; untagged templates still throw an early error for invalid escape sequences:</p>
 
   <pre><code class="javascript">
     let bad = `bad escape sequence: \unicode`; // throws early error
-  </code><pre>
-
+  </code></pre>
 </emu-intro>
 
+<!-- es6num="11" -->
+<emu-clause id="sec-ecmascript-language-lexical-grammar">
+  <h1>(<a href="https://tc39.github.io/ecma262/#sec-ecmascript-language-lexical-grammar">11</a>) ECMAScript Language: Lexical Grammar</h1>
+  <p>The source text of an ECMAScript |Script| or |Module| is first converted into a sequence of input elements, which are tokens, line terminators, comments, or white space. The source text is scanned from left to right, repeatedly taking the longest possible sequence of code points as the next input element.</p>
+  <p>There are several situations where the identification of lexical input elements is sensitive to the syntactic grammar context that is consuming the input elements. This requires multiple goal symbols for the lexical grammar. The |InputElementRegExpOrTemplateTail| goal is used in syntactic grammar contexts where a |RegularExpressionLiteral|, a |TemplateMiddle|, or a |TemplateTail| is permitted. The |InputElementRegExp| goal symbol is used in all syntactic grammar contexts where a |RegularExpressionLiteral| is permitted but neither a |TemplateMiddle|, nor a |TemplateTail| is permitted. The |InputElementTemplateTail| goal is used in all syntactic grammar contexts where a |TemplateMiddle| or a |TemplateTail| is permitted but a |RegularExpressionLiteral| is not permitted. In all other contexts, |InputElementDiv| is used as the lexical goal symbol.</p>
+  <emu-note>
+    <p>The use of multiple lexical goals ensures that there are no lexical ambiguities that would affect automatic semicolon insertion. For example, there are no syntactic grammar contexts where both a leading division or division-assignment, and a leading |RegularExpressionLiteral| are permitted. This is not affected by semicolon insertion (see <emu-xref href="#sec-automatic-semicolon-insertion"></emu-xref>); in examples such as the following:</p>
+    <pre><code class="javascript">
+      a = b
+      /hi/g.exec(c).map(d);
+    </code></pre>
+    <p>where the first non-whitespace, non-comment code point after a |LineTerminator| is U+002F (SOLIDUS) and the syntactic context allows division or division-assignment, no semicolon is inserted at the |LineTerminator|. That is, the above example is interpreted in the same way as:</p>
+    <pre><code class="javascript">
+      a = b / hi / g.exec(c).map(d);
+    </code></pre>
+  </emu-note>
+  <h2>Syntax</h2>
+  <emu-grammar>
+    InputElementDiv ::
+      WhiteSpace
+      LineTerminator
+      Comment
+      CommonToken
+      DivPunctuator
+      RightBracePunctuator
 
-<style>
-  tr.ins, li.ins { background-color: #e0f8e0; text-decoration: none; border-bottom: 1px solid #396; }
-  tr.ins > td > ins, li.ins > ins { border-bottom: 0; }
-</style>
+    InputElementRegExp ::
+      WhiteSpace
+      LineTerminator
+      Comment
+      CommonToken
+      RightBracePunctuator
+      RegularExpressionLiteral
+  </emu-grammar>
+
+  <emu-production name="InputElementRegExpOrTemplateTail" type="lexical">
+    <emu-rhs><emu-nt>WhiteSpace</emu-nt></emu-rhs>
+    <emu-rhs><emu-nt>LineTerminator</emu-nt></emu-rhs>
+    <emu-rhs><emu-nt>Comment</emu-nt></emu-rhs>
+    <emu-rhs><emu-nt>CommonToken</emu-nt></emu-rhs>
+    <emu-rhs><emu-nt>RegularExpressionLiteral</emu-nt></emu-rhs>
+    <del class="block">
+      <emu-rhs><emu-nt>TemplateSubstitutionTail</emu-nt></emu-rhs>
+    </del>
+    <ins class="block">
+      <emu-rhs><emu-nt params="Tagged">TemplateSubstitutionTail</emu-nt></emu-rhs>
+    </ins>
+  </emu-production>
+
+  <emu-production name="InputElementTemplateTail" type="lexical">
+    <emu-rhs><emu-nt>WhiteSpace</emu-nt></emu-rhs>
+    <emu-rhs><emu-nt>LineTerminator</emu-nt></emu-rhs>
+    <emu-rhs><emu-nt>Comment</emu-nt></emu-rhs>
+    <emu-rhs><emu-nt>CommonToken</emu-nt></emu-rhs>
+    <emu-rhs><emu-nt>DivPunctuator</emu-nt></emu-rhs>
+    <del class="block">
+      <emu-rhs><emu-nt>TemplateSubstitutionTail</emu-nt></emu-rhs>
+    </del>
+    <ins class="block">
+      <emu-rhs><emu-nt params="Tagged">TemplateSubstitutionTail</emu-nt></emu-rhs>
+    </ins>
+  </emu-production>
+</emu-clause>
+
+<!-- es6num="11.5" -->
+<emu-clause id="sec-tokens">
+  <h1>(<a href="https://tc39.github.io/ecma262/#sec-tokens">11.5</a>) Tokens</h1>
+  <h2>Syntax</h2>
+  <emu-production name="CommonToken" type="lexical">
+    <emu-rhs><emu-nt>IdentifierName</emu-nt></emu-rhs>
+    <emu-rhs><emu-nt>Punctuator</emu-nt></emu-rhs>
+    <emu-rhs><emu-nt>NumericLiteral</emu-nt></emu-rhs>
+    <emu-rhs><emu-nt>StringLiteral</emu-nt></emu-rhs>
+    <del class="block">
+      <emu-rhs><emu-nt>Template</emu-nt></emu-rhs>
+    </del>
+    <ins class="block">
+      <emu-rhs><emu-nt params="Tagged">Template</emu-nt></emu-rhs>
+    </ins>
+  </emu-production>
+  <emu-note>
+    <p>The |DivPunctuator|, |RegularExpressionLiteral|, |RightBracePunctuator|, and |TemplateSubstitutionTail| productions derive additional tokens that are not included in the |CommonToken| production.</p>
+  </emu-note>
+</emu-clause>
+
+<!-- es6num="11.8.6" -->
+<emu-clause id="sec-template-literal-lexical-components">
+  <h1>(<a href="https://tc39.github.io/ecma262/#sec-template-literal-lexical-components">11.8.6</a>) Template Literal Lexical Components</h1>
+  <h2>Syntax</h2>
+
+  <del class="block">
+    <emu-grammar>
+    Template ::
+      NoSubstitutionTemplate
+      TemplateHead
+    </emu-grammar>
+  </del>
+  <ins class="block">
+    <emu-grammar>
+    Template[Tagged] ::
+      NoSubstitutionTemplate[?Tagged]
+      TemplateHead[?Tagged]
+    </emu-grammar>
+  </ins>
+
+  <del class="block">
+    <emu-grammar>
+    NoSubstitutionTemplate ::
+      ``` TemplateCharacters? ```
+    </emu-grammar>
+  </del>
+  <ins class="block">
+    <emu-grammar>
+    NoSubstitutionTemplate[Tagged] ::
+      ``` TemplateCharacters[?Tagged]? ```
+    </emu-grammar>
+  </ins>
+
+  <del class="block">
+    <emu-grammar>
+    TemplateHead ::
+      ``` TemplateCharacters? `${`
+    </emu-grammar>
+  </del>
+  <ins class="block">
+    <emu-grammar>
+    TemplateHead[Tagged] ::
+      ``` TemplateCharacters[?Tagged]? `${`
+    </emu-grammar>
+  </ins>
+
+  <del class="block">
+    <emu-grammar>
+    TemplateSubstitutionTail ::
+      TemplateMiddle
+      TemplateTail
+    </emu-grammar>
+  </del>
+  <ins class="block">
+    <emu-grammar>
+    TemplateSubstitutionTail[Tagged] ::
+      TemplateMiddle[?Tagged]
+      TemplateTail[?Tagged]
+    </emu-grammar>
+  </ins>
+
+  <del class="block">
+    <emu-grammar>
+    TemplateMiddle ::
+      `}` TemplateCharacters? `${`
+    </emu-grammar>
+  </del>
+  <ins class="block">
+    <emu-grammar>
+    TemplateMiddle[Tagged] ::
+      `}` TemplateCharacters[?Tagged]? `${`
+    </emu-grammar>
+  </ins>
+
+  <del class="block">
+    <emu-grammar>
+    TemplateTail ::
+      `}` TemplateCharacters? ```
+    </emu-grammar>
+  </del>
+  <ins class="block">
+    <emu-grammar>
+    TemplateTail[Tagged] ::
+      `}` TemplateCharacters[?Tagged]? ```
+    </emu-grammar>
+  </ins>
+
+  <del class="block">
+    <emu-grammar>
+    TemplateCharacters ::
+      TemplateCharacter TemplateCharacters?
+    </emu-grammar>
+  </del>
+  <ins class="block">
+    <emu-grammar>
+    TemplateCharacters[Tagged] ::
+      TemplateCharacter[?Tagged] TemplateCharacters[?Tagged]?
+    </emu-grammar>
+  </ins>
+
+  <del class="block">
+    <emu-grammar>
+    TemplateCharacter ::
+      `$` [lookahead != `{` ]
+      `\` EscapeSequence
+      LineContinuation
+      LineTerminatorSequence
+      SourceCharacter but not one of ``` or `\` or `$` or LineTerminator
+    </emu-grammar>
+  </del>
+  <ins class="block">
+    <emu-grammar>
+    TemplateCharacter[Tagged] ::
+      `$` [lookahead != `{` ]
+      `\` EscapeSequence
+      [+Tagged] `\` NotEscapeSequence
+      LineContinuation
+      LineTerminatorSequence
+      SourceCharacter but not one of ``` or `\` or `$` or LineTerminator
+    </emu-grammar>
+  </ins>
+
+  <ins class="block">
+    <emu-grammar>
+    NotEscapeSequence ::
+      `0` DecimalDigit
+      DecimalDigit but not `0`
+      `x` [lookahead &lt;! HexDigit]
+      `x` HexDigit [lookahead &lt;! HexDigit]
+      `u` [lookahead &lt;! {HexDigit, `{`}]
+      `u` HexDigit [lookahead &lt;! HexDigit]
+      `u` HexDigit HexDigit [lookahead &lt;! HexDigit]
+      `u` HexDigit HexDigit HexDigit [lookahead &lt;! HexDigit]
+      `u` `{` [lookahead &lt;! HexDigit]
+      `u` `{` NotCodePoint
+      `u` `{` CodePoint [lookahead != `}`]
+
+    NotCodePoint ::
+      HexDigits [&gt; but not if MV of HexDigits &le; 1114111 ]
+
+    CodePoint ::
+      HexDigits [&gt; but not if MV of HexDigits &gt; 1114111 ]
+    </emu-grammar>
+  </ins>
+
+  <p>A conforming implementation must not use the extended definition of |EscapeSequence| described in <emu-xref href="#sec-additional-syntax-string-literals"></emu-xref> when parsing a |TemplateCharacter|.</p>
+  <emu-note>
+    <p>|TemplateSubstitutionTail| is used by the |InputElementTemplateTail| alternative lexical goal.</p>
+  </emu-note>
+</emu-clause>
+
+<!-- es6num="11.8.6.1" -->
+<emu-clause id="sec-static-semantics-tv-and-trv">
+  <h1>(<a href="https://tc39.github.io/ecma262/#sec-static-semantics-tv-and-trv">11.8.6.1</a>) Static Semantics: TV and TRV</h1>
+  <p>A template literal component is interpreted as a sequence of Unicode code points. The Template Value (TV) of a literal component is described in terms of code unit values (SV, <emu-xref href="#sec-literals-string-literals"></emu-xref>) contributed by the various parts of the template literal component. As part of this process, some Unicode code points within the template component are interpreted as having a mathematical value (MV, <emu-xref href="#sec-literals-numeric-literals"></emu-xref>). In determining a TV, escape sequences are replaced by the UTF-16 code unit(s) of the Unicode code point represented by the escape sequence. The Template Raw Value (TRV) is similar to a Template Value with the difference that in TRVs escape sequences are interpreted literally.</p>
+  <ul>
+    <li>
+      The TV and TRV of <emu-grammar>NoSubstitutionTemplate :: ``` ```</emu-grammar> is the empty code unit sequence.
+    </li>
+    <li>
+      The TV and TRV of <emu-grammar>TemplateHead :: ``` `${`</emu-grammar> is the empty code unit sequence.
+    </li>
+    <li>
+      The TV and TRV of <emu-grammar>TemplateMiddle :: `}` `${`</emu-grammar> is the empty code unit sequence.
+    </li>
+    <li>
+      The TV and TRV of <emu-grammar>TemplateTail :: `}` ```</emu-grammar> is the empty code unit sequence.
+    </li>
+    <li>
+      The TV of <emu-grammar>NoSubstitutionTemplate :: ``` TemplateCharacters ```</emu-grammar> is the TV of |TemplateCharacters|.
+    </li>
+    <li>
+      The TV of <emu-grammar>TemplateHead :: ``` TemplateCharacters `${`</emu-grammar> is the TV of |TemplateCharacters|.
+    </li>
+    <li>
+      The TV of <emu-grammar>TemplateMiddle :: `}` TemplateCharacters `${`</emu-grammar> is the TV of |TemplateCharacters|.
+    </li>
+    <li>
+      The TV of <emu-grammar>TemplateTail :: `}` TemplateCharacters ```</emu-grammar> is the TV of |TemplateCharacters|.
+    </li>
+    <li>
+      The TV of <emu-grammar>TemplateCharacters :: TemplateCharacter</emu-grammar> is the TV of |TemplateCharacter|.
+    </li>
+    <del class="block">
+      <li>
+        The TV of <emu-grammar>TemplateCharacters :: TemplateCharacter TemplateCharacters</emu-grammar> is a sequence consisting of the code units in the TV of |TemplateCharacter| followed by all the code units in the TV of |TemplateCharacters| in order.
+      </li>
+    </del>
+    <ins class="block">
+      <li>
+        The TV of <emu-grammar>TemplateCharacters :: TemplateCharacter TemplateCharacters</emu-grammar> is either:
+        <ul>
+          <li>*undefined* if the TV of either |TemplateCharacter| or |TemplateCharacters| is *undefined*, or</li>
+          <li>a sequence consisting of the code units in the TV of |TemplateCharacter| followed by all the code units in the TV of |TemplateCharacters| in order.</li>
+        </ul>
+      </li>
+    </ins>
+    <li>
+      The TV of <emu-grammar>TemplateCharacter :: SourceCharacter but not one of ``` or `\` or `$` or LineTerminator</emu-grammar> is the UTF16Encoding of the code point value of |SourceCharacter|.
+    </li>
+    <li>
+      The TV of <emu-grammar>TemplateCharacter :: `$`</emu-grammar> is the code unit value 0x0024.
+    </li>
+    <li>
+      The TV of <emu-grammar>TemplateCharacter :: `\` EscapeSequence</emu-grammar> is the SV of |EscapeSequence|.
+    </li>
+    <ins class="block">
+      <li>
+        The TV of <emu-grammar>TemplateCharacter :: `\` NotEscapeSequence</emu-grammar> is *undefined*.
+      </li>
+    </ins>
+    <li>
+      The TV of <emu-grammar>TemplateCharacter :: LineContinuation</emu-grammar> is the TV of |LineContinuation|.
+    </li>
+    <li>
+      The TV of <emu-grammar>TemplateCharacter :: LineTerminatorSequence</emu-grammar> is the TRV of |LineTerminatorSequence|.
+    </li>
+    <li>
+      The TV of <emu-grammar>LineContinuation :: `\` LineTerminatorSequence</emu-grammar> is the empty code unit sequence.
+    </li>
+    <li>
+      The TRV of <emu-grammar>NoSubstitutionTemplate :: ``` TemplateCharacters ```</emu-grammar> is the TRV of |TemplateCharacters|.
+    </li>
+    <li>
+      The TRV of <emu-grammar>TemplateHead :: ``` TemplateCharacters `${`</emu-grammar> is the TRV of |TemplateCharacters|.
+    </li>
+    <li>
+      The TRV of <emu-grammar>TemplateMiddle :: `}` TemplateCharacters `${`</emu-grammar> is the TRV of |TemplateCharacters|.
+    </li>
+    <li>
+      The TRV of <emu-grammar>TemplateTail :: `}` TemplateCharacters ```</emu-grammar> is the TRV of |TemplateCharacters|.
+    </li>
+    <li>
+      The TRV of <emu-grammar>TemplateCharacters :: TemplateCharacter</emu-grammar> is the TRV of |TemplateCharacter|.
+    </li>
+    <li>
+      The TRV of <emu-grammar>TemplateCharacters :: TemplateCharacter TemplateCharacters</emu-grammar> is a sequence consisting of the code units in the TRV of |TemplateCharacter| followed by all the code units in the TRV of |TemplateCharacters|, in order.
+    </li>
+    <li>
+      The TRV of <emu-grammar>TemplateCharacter :: SourceCharacter but not one of ``` or `\` or `$` or LineTerminator</emu-grammar> is the UTF16Encoding of the code point value of |SourceCharacter|.
+    </li>
+    <li>
+      The TRV of <emu-grammar>TemplateCharacter :: `$`</emu-grammar> is the code unit value 0x0024.
+    </li>
+    <li>
+      The TRV of <emu-grammar>TemplateCharacter :: `\` EscapeSequence</emu-grammar> is the sequence consisting of the code unit value 0x005C followed by the code units of TRV of |EscapeSequence|.
+    </li>
+    <ins class="block">
+      <li>
+        The TRV of <emu-grammar>TemplateCharacter :: `\` NotEscapeSequence</emu-grammar> is the sequence consisting of the code unit value 0x005C followed by the code units of TRV of |NotEscapeSequence|.
+      </li>
+    </ins>
+    <li>
+      The TRV of <emu-grammar>TemplateCharacter :: LineContinuation</emu-grammar> is the TRV of |LineContinuation|.
+    </li>
+    <li>
+      The TRV of <emu-grammar>TemplateCharacter :: LineTerminatorSequence</emu-grammar> is the TRV of |LineTerminatorSequence|.
+    </li>
+    <li>
+      The TRV of <emu-grammar>EscapeSequence :: CharacterEscapeSequence</emu-grammar> is the TRV of the |CharacterEscapeSequence|.
+    </li>
+    <li>
+      The TRV of <emu-grammar>EscapeSequence :: `0`</emu-grammar> is the code unit value 0x0030 (DIGIT ZERO).
+    </li>
+    <li>
+      The TRV of <emu-grammar>EscapeSequence :: HexEscapeSequence</emu-grammar> is the TRV of the |HexEscapeSequence|.
+    </li>
+    <li>
+      The TRV of <emu-grammar>EscapeSequence :: UnicodeEscapeSequence</emu-grammar> is the TRV of the |UnicodeEscapeSequence|.
+    </li>
+
+    <ins class="block">
+      <li>
+        The TRV of <emu-grammar>NotEscapeSequence :: `0` DecimalDigit</emu-grammar> is the sequence consisting of the code unit value 0x0030 (DIGIT ZERO) followed by the code units of the TRV of |DecimalDigit|.
+      </li>
+      <li>
+        The TRV of <emu-grammar>NotEscapeSequence :: `x` [lookahead &lt;! HexDigit]</emu-grammar> is the code unit value 0x0078.
+      </li>
+      <li>
+        The TRV of <emu-grammar>NotEscapeSequence :: `x` HexDigit [lookahead &lt;! HexDigit]</emu-grammar> is the sequence consisting of the code unit value 0x0078 followed by the code units of the TRV of |HexDigit|.
+      </li>
+      <li>
+        The TRV of <emu-grammar>NotEscapeSequence :: `u` [lookahead &lt;! { HexDigit, `{` }]</emu-grammar> is the code unit value 0x0075.
+      </li>
+      <li>
+        The TRV of <emu-grammar>NotEscapeSequence :: `u` HexDigit [lookahead &lt;! { HexDigit, `{` }]</emu-grammar> is the sequence consisting of the code unit value 0x0075 followed by the code units of the TRV of |HexDigit|.
+      </li>
+      <li>
+        The TRV of <emu-grammar>NotEscapeSequence :: `u` HexDigit HexDigit [lookahead &lt;! { HexDigit, `{` }]</emu-grammar> is the sequence consisting of the code unit value 0x0075 followed by the code units of the TRV of |HexDigit| followed by the code units of the TRV of |HexDigit|.
+      </li>
+      <li>
+        The TRV of <emu-grammar>NotEscapeSequence :: `u` HexDigit HexDigit HexDigit [lookahead &lt;! { HexDigit, `{` }]</emu-grammar> is the sequence consisting of the code unit value 0x0075 followed by the code units of the TRV of |HexDigit| followed by the code units of the TRV of |HexDigit| followed by the code units of the TRV of |HexDigit|.
+      </li>
+      <li>
+        The TRV of <emu-grammar>NotEscapeSequence :: `u` `{` [lookahead &lt;! HexDigit]</emu-grammar> is the sequence consisting of the code unit value 0x0075 followed by the code unit value 0x007B.
+      </li>
+      <li>
+        The TRV of <emu-grammar>NotEscapeSequence :: `u` `{` NotCodePoint</emu-grammar> is the sequence consisting of the code unit value 0x0075 followed by the code unit value 0x007B followed by the code units of the TRV of |NotCodePoint|.
+      </li>
+      <li>
+        The TRV of <emu-grammar>NotEscapeSequence :: `u` `{` CodePoint [lookahead &lt;! `}`]</emu-grammar> is the sequence consisting of the code unit value 0x0075 followed by the code unit value 0x007B followed by the code units of the TRV of |CodePoint|.
+      </li>
+      <li>
+        The TRV of <emu-grammar>DecimalDigit :: one of `0` `1` `2` `3` `4` `5` `6` `7` `8` `9`</emu-grammar> is the SV of the |SourceCharacter| that is that single code point.
+      </li>
+      <li>
+        The TRV of <emu-grammar>CodePoint :: HexDigits [&gt; but not if MV of HexDigits &gt; 1114111 ]</emu-grammar> is the sequence consisting of the code units of the TRV of |HexDigits|.
+      </li>
+      <li>
+        The TRV of <emu-grammar>NotCodePoint :: HexDigits [&gt; but not if MV of HexDigits &le; 1114111 ]</emu-grammar> is the sequence consisting of the code units of the TRV of |HexDigits|.
+      </li>
+    </ins>
+
+    <li>
+      The TRV of <emu-grammar>CharacterEscapeSequence :: SingleEscapeCharacter</emu-grammar> is the TRV of the |SingleEscapeCharacter|.
+    </li>
+    <li>
+      The TRV of <emu-grammar>CharacterEscapeSequence :: NonEscapeCharacter</emu-grammar> is the SV of the |NonEscapeCharacter|.
+    </li>
+    <li>
+      The TRV of <emu-grammar>SingleEscapeCharacter :: one of `'` `"` `\` `b` `f` `n` `r` `t` `v`</emu-grammar> is the SV of the |SourceCharacter| that is that single code point.
+    </li>
+    <li>
+      The TRV of <emu-grammar>HexEscapeSequence :: `x` HexDigit HexDigit</emu-grammar> is the sequence consisting of code unit value 0x0078 followed by TRV of the first |HexDigit| followed by the TRV of the second |HexDigit|.
+    </li>
+    <li>
+      The TRV of <emu-grammar>UnicodeEscapeSequence :: `u` Hex4Digits</emu-grammar> is the sequence consisting of code unit value 0x0075 followed by TRV of |Hex4Digits|.
+    </li>
+    <li>
+      The TRV of <emu-grammar>UnicodeEscapeSequence :: `u{` HexDigits `}`</emu-grammar> is the sequence consisting of code unit value 0x0075 followed by code unit value 0x007B followed by TRV of |HexDigits| followed by code unit value 0x007D.
+    </li>
+    <li>
+      The TRV of <emu-grammar>Hex4Digits :: HexDigit HexDigit HexDigit HexDigit</emu-grammar> is the sequence consisting of the TRV of the first |HexDigit| followed by the TRV of the second |HexDigit| followed by the TRV of the third |HexDigit| followed by the TRV of the fourth |HexDigit|.
+    </li>
+    <li>
+      The TRV of <emu-grammar>HexDigits :: HexDigit</emu-grammar> is the TRV of |HexDigit|.
+    </li>
+    <li>
+      The TRV of <emu-grammar>HexDigits :: HexDigits HexDigit</emu-grammar> is the sequence consisting of TRV of |HexDigits| followed by TRV of |HexDigit|.
+    </li>
+    <li>
+      The TRV of a |HexDigit| is the SV of the |SourceCharacter| that is that |HexDigit|.
+    </li>
+    <li>
+      The TRV of <emu-grammar>LineContinuation :: `\` LineTerminatorSequence</emu-grammar> is the sequence consisting of the code unit value 0x005C followed by the code units of TRV of |LineTerminatorSequence|.
+    </li>
+    <li>
+      The TRV of <emu-grammar>LineTerminatorSequence :: &lt;LF&gt;</emu-grammar> is the code unit value 0x000A.
+    </li>
+    <li>
+      The TRV of <emu-grammar>LineTerminatorSequence :: &lt;CR&gt;</emu-grammar> is the code unit value 0x000A.
+    </li>
+    <li>
+      The TRV of <emu-grammar>LineTerminatorSequence :: &lt;LS&gt;</emu-grammar> is the code unit value 0x2028.
+    </li>
+    <li>
+      The TRV of <emu-grammar>LineTerminatorSequence :: &lt;PS&gt;</emu-grammar> is the code unit value 0x2029.
+    </li>
+    <li>
+      The TRV of <emu-grammar>LineTerminatorSequence :: &lt;CR&gt;&lt;LF&gt;</emu-grammar> is the sequence consisting of the code unit value 0x000A.
+    </li>
+  </ul>
+  <emu-note>
+    <p>TV excludes the code units of |LineContinuation| while TRV includes them. &lt;CR&gt;&lt;LF&gt; and &lt;CR&gt; |LineTerminatorSequence|s are normalized to &lt;LF&gt; for both TV and TRV. An explicit |EscapeSequence| is needed to include a &lt;CR&gt; or &lt;CR&gt;&lt;LF&gt; sequence.</p>
+  </emu-note>
+</emu-clause>
+
+
+<!-- es6num="12.2.9" -->
+<emu-clause id="sec-template-literals">
+  <h1>(<a href="https://tc39.github.io/ecma262/#sec-template-literals">12.2.9</a>) Template Literals</h1>
+  <h2>Syntax</h2>
+
+  <del class="block">
+    <emu-grammar>
+      TemplateLiteral[Yield] :
+        NoSubstitutionTemplate
+        SubstitutionTemplate[?Yield]
+
+      SubstitutionTemplate[Yield] :
+        TemplateHead Expression[In, ?Yield] TemplateSpans[?Yield]
+
+      TemplateSpans[Yield] :
+        TemplateTail
+        TemplateMiddleList[?Yield] TemplateTail
+
+      TemplateMiddleList[Yield] :
+        TemplateMiddle Expression[In, ?Yield]
+        TemplateMiddleList[?Yield] TemplateMiddle Expression[In, ?Yield]
+    </emu-grammar>
+  </del>
+
+  <ins class="block">
+    <emu-grammar>
+      TemplateLiteral[Yield, Tagged] :
+        NoSubstitutionTemplate[?Tagged]
+        SubstitutionTemplate[?Yield, ?Tagged]
+
+      SubstitutionTemplate[Yield, Tagged] :
+        TemplateHead[?Tagged] Expression[In, ?Yield] TemplateSpans[?Yield, ?Tagged]
+
+      TemplateSpans[Yield, Tagged] :
+        TemplateTail[?Tagged]
+        TemplateMiddleList[?Yield, ?Tagged] TemplateTail[?Tagged]
+
+      TemplateMiddleList[Yield, Tagged] :
+        TemplateMiddle[?Tagged] Expression[In, ?Yield]
+        TemplateMiddleList[?Yield, ?Tagged] TemplateMiddle[?Tagged] Expression[In, ?Yield]
+    </emu-grammar>
+  </ins>
+</emu-clause>
+
+<!-- es6num="12.2.9.1" -->
+<emu-clause id="sec-static-semantics-templatestrings">
+  <h1>(<a href="https://tc39.github.io/ecma262/#sec-static-semantics-templatestrings">12.2.9.1</a>) Static Semantics: TemplateStrings</h1>
+  <p>With parameter _raw_.</p>
+  <emu-grammar>TemplateLiteral : NoSubstitutionTemplate</emu-grammar>
+  <emu-alg>
+    1. If _raw_ is *false*, then
+      1. Let _string_ be the TV of |NoSubstitutionTemplate|.
+    1. Else,
+      1. Let _string_ be the TRV of |NoSubstitutionTemplate|.
+    1. Return a List containing the single element, _string_.
+  </emu-alg>
+  <emu-grammar>TemplateLiteral : TemplateHead Expression TemplateSpans</emu-grammar>
+  <emu-alg>
+    1. If _raw_ is *false*, then
+      1. Let _head_ be the TV of |TemplateHead|.
+    1. Else,
+      1. Let _head_ be the TRV of |TemplateHead|.
+    1. Let _tail_ be TemplateStrings of |TemplateSpans| with argument _raw_.
+    1. <del>Return a List containing _head_ followed by the elements, in order, of _tail_.</del>
+    1. <ins>If _head_ or _tail_ is *undefined*, then</ins>
+      1. <ins>Return *undefined*.</ins>
+    1. <ins>Else,</ins>
+      1. <ins>Return a List containing _head_ followed by the elements, in order, of _tail_.</ins>
+  </emu-alg>
+  <emu-grammar>TemplateSpans : TemplateTail</emu-grammar>
+  <emu-alg>
+    1. If _raw_ is *false*, then
+      1. Let _tail_ be the TV of |TemplateTail|.
+    1. Else,
+      1. Let _tail_ be the TRV of |TemplateTail|.
+    1. Return a List containing the single element, _tail_.
+  </emu-alg>
+  <emu-grammar>TemplateSpans : TemplateMiddleList TemplateTail</emu-grammar>
+  <emu-alg>
+    1. Let _middle_ be TemplateStrings of |TemplateMiddleList| with argument _raw_.
+    1. If _raw_ is *false*, then
+      1. Let _tail_ be the TV of |TemplateTail|.
+    1. Else,
+      1. Let _tail_ be the TRV of |TemplateTail|.
+    1. <del>Return a List containing the elements, in order, of _middle_ followed by _tail_.</del>
+    1. <ins>If _middle_ or _tail_ is *undefined*, then</ins>
+      1. <ins>Return *undefined*.</ins>
+    1. <ins>Else,</ins>
+      1. <ins>Return a List containing the elements, in order, of _middle_ followed by _tail_.</ins>
+  </emu-alg>
+  <emu-grammar>TemplateMiddleList : TemplateMiddle Expression</emu-grammar>
+  <emu-alg>
+    1. If _raw_ is *false*, then
+      1. Let _string_ be the TV of |TemplateMiddle|.
+    1. Else,
+      1. Let _string_ be the TRV of |TemplateMiddle|.
+    1. Return a List containing the single element, _string_.
+  </emu-alg>
+  <emu-grammar>TemplateMiddleList : TemplateMiddleList TemplateMiddle Expression</emu-grammar>
+  <emu-alg>
+    1. Let _front_ be TemplateStrings of |TemplateMiddleList| with argument _raw_.
+    1. If _raw_ is *false*, then
+      1. Let _last_ be the TV of |TemplateMiddle|.
+    1. Else,
+      1. Let _last_ be the TRV of |TemplateMiddle|.
+    1. <del>Append _last_ as the last element of the List _front_.</del>
+    1. <del>Return _front_.</del>
+    1. <ins>If _last_ or _front_ is *undefined*, then</ins>
+      1. <ins>Return *undefined*.</ins>
+    1. <ins>Else,</ins>
+      1. <ins>Append _last_ as the last element of the List _front_.</ins>
+      1. <ins>Return _front_.</ins>
+  </emu-alg>
+</emu-clause>
+
+<!-- es6num="12.3" -->
+<emu-clause id="sec-left-hand-side-expressions">
+  <h1>(<a href="https://tc39.github.io/ecma262/#sec-left-hand-side-expressions">12.3</a>) Left-Hand-Side Expressions</h1>
+  <h2>Syntax</h2>
+
+  <emu-production name="MemberExpression" params="Yield">
+    <emu-rhs><emu-nt params="?Yield">PrimaryExpression</emu-nt></emu-rhs>
+    <emu-rhs>
+      <emu-nt params="?Yield">MemberExpression</emu-nt>
+      <emu-t>[</emu-t>
+      <emu-nt params="In, ?Yield">Expression</emu-nt>
+      <emu-t>]</emu-t>
+    </emu-rhs>
+    <emu-rhs>
+      <emu-nt params="?Yield">MemberExpression</emu-nt>
+      <emu-t>.</emu-t>
+      <emu-nt>IdentifierName</emu-nt>
+    </emu-rhs>
+
+    <del class="block"><emu-rhs>
+      <emu-nt params="?Yield">MemberExpression</emu-nt>
+      <emu-nt params="?Yield">TemplateLiteral</emu-nt>
+    </emu-rhs></del>
+    <ins class="block"><emu-rhs>
+      <emu-nt params="?Yield">MemberExpression</emu-nt>
+      <emu-nt params="?Yield, Tagged">TemplateLiteral</emu-nt>
+    </emu-rhs></ins>
+
+    <emu-rhs>
+      <emu-nt params="?Yield">SuperProperty</emu-nt>
+    </emu-rhs>
+    <emu-rhs>
+      <emu-nt>MetaProperty</emu-nt>
+    </emu-rhs>
+    <emu-rhs>
+      <emu-t>new</emu-t>
+      <emu-nt params="?Yield">MemberExpression</emu-nt>
+      <emu-nt params="?Yield">Arguments</emu-nt>
+    </emu-rhs>
+  </emu-production>
+
+  <emu-production name="CallExpression" params="Yield">
+    <emu-rhs>
+      <emu-nt params="?Yield">MemberExpression</emu-nt>
+      <emu-nt params="?Yield">Arguments</emu-nt>
+    </emu-rhs>
+    <emu-rhs>
+      <emu-nt params="?Yield">SuperCall</emu-nt>
+    </emu-rhs>
+    <emu-rhs>
+      <emu-nt params="?Yield">CallExpression</emu-nt>
+      <emu-nt params="?Yield">Arguments</emu-nt>
+    </emu-rhs>
+    <emu-rhs>
+      <emu-nt params="?Yield">CallExpression</emu-nt>
+      <emu-t>[</emu-t>
+      <emu-nt params="?Yield">Expression</emu-nt>
+      <emu-t>]</emu-t>
+    </emu-rhs>
+    <emu-rhs>
+      <emu-nt params="?Yield">CallExpression</emu-nt>
+      <emu-t>.</emu-t>
+      <emu-nt>IdentifierName</emu-nt>
+    </emu-rhs>
+
+    <del class="block"><emu-rhs>
+      <emu-nt params="?Yield">CallExpression</emu-nt>
+      <emu-nt params="?Yield">TemplateLiteral</emu-nt>
+    </emu-rhs></del>
+    <ins class="block"><emu-rhs>
+      <emu-nt params="?Yield">CallExpression</emu-nt>
+      <emu-nt params="?Yield, Tagged">TemplateLiteral</emu-nt>
+    </emu-rhs></ins>
+
+  </emu-production>
+
+  <!-- <emu-grammar>
+    MemberExpression[Yield] :
+      PrimaryExpression[?Yield]
+      MemberExpression[?Yield] `[` Expression[In, ?Yield] `]`
+      MemberExpression[?Yield] `.` IdentifierName
+      MemberExpression[?Yield] TemplateLiteral[?Yield, Tagged]
+      SuperProperty[?Yield]
+      MetaProperty
+      `new` MemberExpression[?Yield] Arguments[?Yield]
+  </emu-grammar>
+ -->
+
+  <!-- <emu-grammar>
+    CallExpression[Yield] :
+      MemberExpression[?Yield] Arguments[?Yield]
+      SuperCall[?Yield]
+      CallExpression[?Yield] Arguments[?Yield]
+      CallExpression[?Yield] `[` Expression[In, ?Yield] `]`
+      CallExpression[?Yield] `.` IdentifierName
+      CallExpression[?Yield] TemplateLiteral[?Yield, Tagged]
+  </emu-grammar> -->
+
+  </emu-grammar>
+</emu-clause>
