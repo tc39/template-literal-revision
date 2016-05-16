@@ -276,7 +276,7 @@ toc: true
       DecimalDigit but not `0`
       `x` [lookahead &lt;! HexDigit]
       `x` HexDigit [lookahead &lt;! HexDigit]
-      `u` [lookahead &lt;! {HexDigit, `{`}]
+      `u` [lookahead &lt;! HexDigit] [lookahead != `{`]
       `u` HexDigit [lookahead &lt;! HexDigit]
       `u` HexDigit HexDigit [lookahead &lt;! HexDigit]
       `u` HexDigit HexDigit HexDigit [lookahead &lt;! HexDigit]
@@ -337,9 +337,9 @@ toc: true
     </del>
     <ins class="block">
       <li>
-        The TV of <emu-grammar>TemplateCharacters :: TemplateCharacter TemplateCharacters</emu-grammar> is either:
+        The TV of <emu-grammar>TemplateCharacters :: TemplateCharacter TemplateCharacters</emu-grammar> is:
         <ul>
-          <li>*undefined* if the TV of either |TemplateCharacter| or |TemplateCharacters| is *undefined*, or</li>
+          <li>*undefined* if the TV of |TemplateCharacter| is *undefined* or the TV of |TemplateCharacters| is *undefined*, or</li>
           <li>a sequence consisting of the code units in the TV of |TemplateCharacter| followed by all the code units in the TV of |TemplateCharacters| in order.</li>
         </ul>
       </li>
@@ -579,7 +579,7 @@ toc: true
       1. Let _head_ be the TRV of |TemplateHead|.
     1. Let _tail_ be TemplateStrings of |TemplateSpans| with argument _raw_.
     1. <del>Return a List containing _head_ followed by the elements, in order, of _tail_.</del>
-    1. <ins>If _head_ or _tail_ is *undefined*, then</ins>
+    1. <ins>If _head_ is *undefined* or _tail_ is *undefined*, then</ins>
       1. <ins>Return *undefined*.</ins>
     1. <ins>Else,</ins>
       1. <ins>Return a List containing _head_ followed by the elements, in order, of _tail_.</ins>
@@ -600,7 +600,7 @@ toc: true
     1. Else,
       1. Let _tail_ be the TRV of |TemplateTail|.
     1. <del>Return a List containing the elements, in order, of _middle_ followed by _tail_.</del>
-    1. <ins>If _middle_ or _tail_ is *undefined*, then</ins>
+    1. <ins>If _middle_ is *undefined* or _tail_ is *undefined*, then</ins>
       1. <ins>Return *undefined*.</ins>
     1. <ins>Else,</ins>
       1. <ins>Return a List containing the elements, in order, of _middle_ followed by _tail_.</ins>
@@ -622,7 +622,7 @@ toc: true
       1. Let _last_ be the TRV of |TemplateMiddle|.
     1. <del>Append _last_ as the last element of the List _front_.</del>
     1. <del>Return _front_.</del>
-    1. <ins>If _last_ or _front_ is *undefined*, then</ins>
+    1. <ins>If _last_ is *undefined* or _front_ is *undefined*, then</ins>
       1. <ins>Return *undefined*.</ins>
     1. <ins>Else,</ins>
       1. <ins>Append _last_ as the last element of the List _front_.</ins>
