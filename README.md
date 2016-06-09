@@ -1,3 +1,3 @@
 # Template Literals Revision
 
-For details see [the proposal](http://disnetdev.com/template-literal-revision/).
+For details see [the proposal](https://tc39.github.io/proposal-template-literal-revision/).
