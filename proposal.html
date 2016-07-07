@@ -285,10 +285,10 @@ toc: true
       `u` `{` CodePoint [lookahead != `}`]
 
     NotCodePoint ::
-      HexDigits [&gt; but not if MV of HexDigits &le; 1114111 ]
+      HexDigits [&gt; but not if MV of HexDigits &le; 0x10FFFF ]
 
     CodePoint ::
-      HexDigits [&gt; but not if MV of HexDigits &gt; 1114111 ]
+      HexDigits [&gt; but not if MV of HexDigits &gt; 0x10FFFF ]
     </emu-grammar>
   </ins>
 
@@ -453,10 +453,10 @@ toc: true
         The TRV of <emu-grammar>DecimalDigit :: one of `0` `1` `2` `3` `4` `5` `6` `7` `8` `9`</emu-grammar> is the SV of the |SourceCharacter| that is that single code point.
       </li>
       <li>
-        The TRV of <emu-grammar>CodePoint :: HexDigits [&gt; but not if MV of HexDigits &gt; 1114111 ]</emu-grammar> is the sequence consisting of the code units of the TRV of |HexDigits|.
+        The TRV of <emu-grammar>CodePoint :: HexDigits [&gt; but not if MV of HexDigits &gt; 0x10FFFF ]</emu-grammar> is the sequence consisting of the code units of the TRV of |HexDigits|.
       </li>
       <li>
-        The TRV of <emu-grammar>NotCodePoint :: HexDigits [&gt; but not if MV of HexDigits &le; 1114111 ]</emu-grammar> is the sequence consisting of the code units of the TRV of |HexDigits|.
+        The TRV of <emu-grammar>NotCodePoint :: HexDigits [&gt; but not if MV of HexDigits &le; 0x10FFFF ]</emu-grammar> is the sequence consisting of the code units of the TRV of |HexDigits|.
       </li>
     </ins>
 
