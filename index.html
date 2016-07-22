@@ -381,13 +381,13 @@ tag<span class="hljs-string">`\unicode and \u{55}`</span></code></pre>
       <li>
         The TRV of  <emu-grammar><emu-production name="NotEscapeSequence" type="lexical" collapsed="" class=" inline">
     <emu-nt><a href="#prod-NotEscapeSequence">NotEscapeSequence</a></emu-nt><emu-geq>::</emu-geq><emu-rhs a="0e40ebfe"><emu-t>u</emu-t><emu-nt><a href="https://tc39.github.io/ecma262/#prod-HexDigit">HexDigit</a></emu-nt><emu-nt><a href="https://tc39.github.io/ecma262/#prod-HexDigit">HexDigit</a></emu-nt><emu-gann>[lookahead ∉ { <emu-nt><a href="https://tc39.github.io/ecma262/#prod-HexDigit">HexDigit</a></emu-nt>, <emu-t>{</emu-t> }]</emu-gann></emu-rhs>
-</emu-production></emu-grammar> is the sequence consisting of the code unit value 0x0075 followed by the code units of the TRV of <emu-nt><a href="https://tc39.github.io/ecma262/#prod-HexDigit">HexDigit</a></emu-nt> followed by the code units of the TRV of <emu-nt><a href="https://tc39.github.io/ecma262/#prod-HexDigit">HexDigit</a></emu-nt>.
+</emu-production></emu-grammar> is the sequence consisting of the code unit value 0x0075 followed by the code units of the TRV of the first <emu-nt><a href="https://tc39.github.io/ecma262/#prod-HexDigit">HexDigit</a></emu-nt> followed by the code units of the TRV of the second <emu-nt><a href="https://tc39.github.io/ecma262/#prod-HexDigit">HexDigit</a></emu-nt>.
       
       </li>
       <li>
         The TRV of  <emu-grammar><emu-production name="NotEscapeSequence" type="lexical" collapsed="" class=" inline">
     <emu-nt><a href="#prod-NotEscapeSequence">NotEscapeSequence</a></emu-nt><emu-geq>::</emu-geq><emu-rhs a="bb49e0cf"><emu-t>u</emu-t><emu-nt><a href="https://tc39.github.io/ecma262/#prod-HexDigit">HexDigit</a></emu-nt><emu-nt><a href="https://tc39.github.io/ecma262/#prod-HexDigit">HexDigit</a></emu-nt><emu-nt><a href="https://tc39.github.io/ecma262/#prod-HexDigit">HexDigit</a></emu-nt><emu-gann>[lookahead ∉ { <emu-nt><a href="https://tc39.github.io/ecma262/#prod-HexDigit">HexDigit</a></emu-nt>, <emu-t>{</emu-t> }]</emu-gann></emu-rhs>
-</emu-production></emu-grammar> is the sequence consisting of the code unit value 0x0075 followed by the code units of the TRV of <emu-nt><a href="https://tc39.github.io/ecma262/#prod-HexDigit">HexDigit</a></emu-nt> followed by the code units of the TRV of <emu-nt><a href="https://tc39.github.io/ecma262/#prod-HexDigit">HexDigit</a></emu-nt> followed by the code units of the TRV of <emu-nt><a href="https://tc39.github.io/ecma262/#prod-HexDigit">HexDigit</a></emu-nt>.
+</emu-production></emu-grammar> is the sequence consisting of the code unit value 0x0075 followed by the code units of the TRV of the first <emu-nt><a href="https://tc39.github.io/ecma262/#prod-HexDigit">HexDigit</a></emu-nt> followed by the code units of the TRV of the second <emu-nt><a href="https://tc39.github.io/ecma262/#prod-HexDigit">HexDigit</a></emu-nt> followed by the code units of the TRV of the third <emu-nt><a href="https://tc39.github.io/ecma262/#prod-HexDigit">HexDigit</a></emu-nt>.
       
       </li>
       <li>
@@ -580,7 +580,7 @@ tag<span class="hljs-string">`\unicode and \u{55}`</span></code></pre>
 </emu-production></emu-grammar>
   <ul>
     <li>
-      It is a Syntax Error if the Tagged parameter was set and <emu-nt><a href="#prod-NoSubstitutionTemplate">NoSubstitutionTemplate</a></emu-nt> contains <emu-nt><a href="#prod-NotEscapeSequence">NotEscapeSequence</a></emu-nt>.
+      It is a Syntax Error if the Tagged parameter was not set and <emu-nt><a href="#prod-NoSubstitutionTemplate">NoSubstitutionTemplate</a></emu-nt> contains <emu-nt><a href="#prod-NotEscapeSequence">NotEscapeSequence</a></emu-nt>.
     
     </li>
   </ul>
@@ -590,7 +590,7 @@ tag<span class="hljs-string">`\unicode and \u{55}`</span></code></pre>
 </emu-production></emu-grammar>
   <ul>
     <li>
-      It is a Syntax Error if the Tagged parameter was set and <emu-nt><a href="#prod-TemplateHead">TemplateHead</a></emu-nt> contains <emu-nt><a href="#prod-NotEscapeSequence">NotEscapeSequence</a></emu-nt>.
+      It is a Syntax Error if the Tagged parameter was not set and <emu-nt><a href="#prod-TemplateHead">TemplateHead</a></emu-nt> contains <emu-nt><a href="#prod-NotEscapeSequence">NotEscapeSequence</a></emu-nt>.
     
     </li>
   </ul>
@@ -600,7 +600,7 @@ tag<span class="hljs-string">`\unicode and \u{55}`</span></code></pre>
 </emu-production></emu-grammar>
   <ul>
     <li>
-      It is a Syntax Error if the Tagged parameter was set and <emu-nt><a href="#prod-TemplateTail">TemplateTail</a></emu-nt> contains <emu-nt><a href="#prod-NotEscapeSequence">NotEscapeSequence</a></emu-nt>.
+      It is a Syntax Error if the Tagged parameter was not set and <emu-nt><a href="#prod-TemplateTail">TemplateTail</a></emu-nt> contains <emu-nt><a href="#prod-NotEscapeSequence">NotEscapeSequence</a></emu-nt>.
     
     </li>
   </ul>
@@ -611,7 +611,7 @@ tag<span class="hljs-string">`\unicode and \u{55}`</span></code></pre>
 </emu-production></emu-grammar>
   <ul>
     <li>
-      It is a Syntax Error if the Tagged parameter was set and <emu-nt><a href="#prod-TemplateMiddle">TemplateMiddle</a></emu-nt> contains <emu-nt><a href="#prod-NotEscapeSequence">NotEscapeSequence</a></emu-nt>.
+      It is a Syntax Error if the Tagged parameter was not set and <emu-nt><a href="#prod-TemplateMiddle">TemplateMiddle</a></emu-nt> contains <emu-nt><a href="#prod-NotEscapeSequence">NotEscapeSequence</a></emu-nt>.
     
     </li>
   </ul>

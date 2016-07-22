@@ -280,10 +280,10 @@ toc: true
         The TRV of <emu-grammar>NotEscapeSequence :: `u` HexDigit [lookahead &lt;! { HexDigit, `{` }]</emu-grammar> is the sequence consisting of the code unit value 0x0075 followed by the code units of the TRV of |HexDigit|.
       </li>
       <li>
-        The TRV of <emu-grammar>NotEscapeSequence :: `u` HexDigit HexDigit [lookahead &lt;! { HexDigit, `{` }]</emu-grammar> is the sequence consisting of the code unit value 0x0075 followed by the code units of the TRV of |HexDigit| followed by the code units of the TRV of |HexDigit|.
+        The TRV of <emu-grammar>NotEscapeSequence :: `u` HexDigit HexDigit [lookahead &lt;! { HexDigit, `{` }]</emu-grammar> is the sequence consisting of the code unit value 0x0075 followed by the code units of the TRV of the first |HexDigit| followed by the code units of the TRV of the second |HexDigit|.
       </li>
       <li>
-        The TRV of <emu-grammar>NotEscapeSequence :: `u` HexDigit HexDigit HexDigit [lookahead &lt;! { HexDigit, `{` }]</emu-grammar> is the sequence consisting of the code unit value 0x0075 followed by the code units of the TRV of |HexDigit| followed by the code units of the TRV of |HexDigit| followed by the code units of the TRV of |HexDigit|.
+        The TRV of <emu-grammar>NotEscapeSequence :: `u` HexDigit HexDigit HexDigit [lookahead &lt;! { HexDigit, `{` }]</emu-grammar> is the sequence consisting of the code unit value 0x0075 followed by the code units of the TRV of the first |HexDigit| followed by the code units of the TRV of the second |HexDigit| followed by the code units of the TRV of the third |HexDigit|.
       </li>
       <li>
         The TRV of <emu-grammar>NotEscapeSequence :: `u` `{` [lookahead &lt;! HexDigit]</emu-grammar> is the sequence consisting of the code unit value 0x0075 followed by the code unit value 0x007B.
@@ -413,7 +413,7 @@ toc: true
   </emu-grammar>
   <ul>
     <li>
-      It is a Syntax Error if the Tagged parameter was set and |NoSubstitutionTemplate| contains |NotEscapeSequence|.
+      It is a Syntax Error if the Tagged parameter was not set and |NoSubstitutionTemplate| contains |NotEscapeSequence|.
     </li>
   </ul>
 
@@ -422,7 +422,7 @@ toc: true
   </emu-grammar>
   <ul>
     <li>
-      It is a Syntax Error if the Tagged parameter was set and |TemplateHead| contains |NotEscapeSequence|.
+      It is a Syntax Error if the Tagged parameter was not set and |TemplateHead| contains |NotEscapeSequence|.
     </li>
   </ul>
 
@@ -431,7 +431,7 @@ toc: true
   </emu-grammar>
   <ul>
     <li>
-      It is a Syntax Error if the Tagged parameter was set and |TemplateTail| contains |NotEscapeSequence|.
+      It is a Syntax Error if the Tagged parameter was not set and |TemplateTail| contains |NotEscapeSequence|.
     </li>
   </ul>
 
@@ -442,7 +442,7 @@ toc: true
   </emu-grammar>
   <ul>
     <li>
-      It is a Syntax Error if the Tagged parameter was set and |TemplateMiddle| contains |NotEscapeSequence|.
+      It is a Syntax Error if the Tagged parameter was not set and |TemplateMiddle| contains |NotEscapeSequence|.
     </li>
   </ul>
 </emu-clause>
