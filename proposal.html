@@ -62,190 +62,35 @@ toc: true
   </code></pre>
 </emu-intro>
 
-<!-- es6num="11" -->
-<emu-clause id="sec-ecmascript-language-lexical-grammar">
-  <h1>(<a href="https://tc39.github.io/ecma262/#sec-ecmascript-language-lexical-grammar">11</a>) ECMAScript Language: Lexical Grammar</h1>
-  <p>The source text of an ECMAScript |Script| or |Module| is first converted into a sequence of input elements, which are tokens, line terminators, comments, or white space. The source text is scanned from left to right, repeatedly taking the longest possible sequence of code points as the next input element.</p>
-  <p>There are several situations where the identification of lexical input elements is sensitive to the syntactic grammar context that is consuming the input elements. This requires multiple goal symbols for the lexical grammar. The |InputElementRegExpOrTemplateTail| goal is used in syntactic grammar contexts where a |RegularExpressionLiteral|, a |TemplateMiddle|, or a |TemplateTail| is permitted. The |InputElementRegExp| goal symbol is used in all syntactic grammar contexts where a |RegularExpressionLiteral| is permitted but neither a |TemplateMiddle|, nor a |TemplateTail| is permitted. The |InputElementTemplateTail| goal is used in all syntactic grammar contexts where a |TemplateMiddle| or a |TemplateTail| is permitted but a |RegularExpressionLiteral| is not permitted. In all other contexts, |InputElementDiv| is used as the lexical goal symbol.</p>
-  <emu-note>
-    <p>The use of multiple lexical goals ensures that there are no lexical ambiguities that would affect automatic semicolon insertion. For example, there are no syntactic grammar contexts where both a leading division or division-assignment, and a leading |RegularExpressionLiteral| are permitted. This is not affected by semicolon insertion (see <emu-xref href="#sec-automatic-semicolon-insertion"></emu-xref>); in examples such as the following:</p>
-    <pre><code class="javascript">
-      a = b
-      /hi/g.exec(c).map(d);
-    </code></pre>
-    <p>where the first non-whitespace, non-comment code point after a |LineTerminator| is U+002F (SOLIDUS) and the syntactic context allows division or division-assignment, no semicolon is inserted at the |LineTerminator|. That is, the above example is interpreted in the same way as:</p>
-    <pre><code class="javascript">
-      a = b / hi / g.exec(c).map(d);
-    </code></pre>
-  </emu-note>
-  <h2>Syntax</h2>
-  <emu-grammar>
-    InputElementDiv ::
-      WhiteSpace
-      LineTerminator
-      Comment
-      CommonToken
-      DivPunctuator
-      RightBracePunctuator
-
-    InputElementRegExp ::
-      WhiteSpace
-      LineTerminator
-      Comment
-      CommonToken
-      RightBracePunctuator
-      RegularExpressionLiteral
-  </emu-grammar>
-
-  <emu-production name="InputElementRegExpOrTemplateTail" type="lexical">
-    <emu-rhs><emu-nt>WhiteSpace</emu-nt></emu-rhs>
-    <emu-rhs><emu-nt>LineTerminator</emu-nt></emu-rhs>
-    <emu-rhs><emu-nt>Comment</emu-nt></emu-rhs>
-    <emu-rhs><emu-nt>CommonToken</emu-nt></emu-rhs>
-    <emu-rhs><emu-nt>RegularExpressionLiteral</emu-nt></emu-rhs>
-    <del class="block">
-      <emu-rhs><emu-nt>TemplateSubstitutionTail</emu-nt></emu-rhs>
-    </del>
-    <ins class="block">
-      <emu-rhs><emu-nt params="Tagged">TemplateSubstitutionTail</emu-nt></emu-rhs>
-    </ins>
-  </emu-production>
-
-  <emu-production name="InputElementTemplateTail" type="lexical">
-    <emu-rhs><emu-nt>WhiteSpace</emu-nt></emu-rhs>
-    <emu-rhs><emu-nt>LineTerminator</emu-nt></emu-rhs>
-    <emu-rhs><emu-nt>Comment</emu-nt></emu-rhs>
-    <emu-rhs><emu-nt>CommonToken</emu-nt></emu-rhs>
-    <emu-rhs><emu-nt>DivPunctuator</emu-nt></emu-rhs>
-    <del class="block">
-      <emu-rhs><emu-nt>TemplateSubstitutionTail</emu-nt></emu-rhs>
-    </del>
-    <ins class="block">
-      <emu-rhs><emu-nt params="Tagged">TemplateSubstitutionTail</emu-nt></emu-rhs>
-    </ins>
-  </emu-production>
-</emu-clause>
-
-<!-- es6num="11.5" -->
-<emu-clause id="sec-tokens">
-  <h1>(<a href="https://tc39.github.io/ecma262/#sec-tokens">11.5</a>) Tokens</h1>
-  <h2>Syntax</h2>
-  <emu-production name="CommonToken" type="lexical">
-    <emu-rhs><emu-nt>IdentifierName</emu-nt></emu-rhs>
-    <emu-rhs><emu-nt>Punctuator</emu-nt></emu-rhs>
-    <emu-rhs><emu-nt>NumericLiteral</emu-nt></emu-rhs>
-    <emu-rhs><emu-nt>StringLiteral</emu-nt></emu-rhs>
-    <del class="block">
-      <emu-rhs><emu-nt>Template</emu-nt></emu-rhs>
-    </del>
-    <ins class="block">
-      <emu-rhs><emu-nt params="Tagged">Template</emu-nt></emu-rhs>
-    </ins>
-  </emu-production>
-  <emu-note>
-    <p>The |DivPunctuator|, |RegularExpressionLiteral|, |RightBracePunctuator|, and |TemplateSubstitutionTail| productions derive additional tokens that are not included in the |CommonToken| production.</p>
-  </emu-note>
-</emu-clause>
-
 <!-- es6num="11.8.6" -->
 <emu-clause id="sec-template-literal-lexical-components">
   <h1>(<a href="https://tc39.github.io/ecma262/#sec-template-literal-lexical-components">11.8.6</a>) Template Literal Lexical Components</h1>
   <h2>Syntax</h2>
 
-  <del class="block">
-    <emu-grammar>
+  <emu-grammar>
     Template ::
       NoSubstitutionTemplate
       TemplateHead
-    </emu-grammar>
-  </del>
-  <ins class="block">
-    <emu-grammar>
-    Template[Tagged] ::
-      NoSubstitutionTemplate[?Tagged]
-      TemplateHead[?Tagged]
-    </emu-grammar>
-  </ins>
 
-  <del class="block">
-    <emu-grammar>
     NoSubstitutionTemplate ::
       ``` TemplateCharacters? ```
-    </emu-grammar>
-  </del>
-  <ins class="block">
-    <emu-grammar>
-    NoSubstitutionTemplate[Tagged] ::
-      ``` TemplateCharacters[?Tagged]? ```
-    </emu-grammar>
-  </ins>
 
-  <del class="block">
-    <emu-grammar>
     TemplateHead ::
       ``` TemplateCharacters? `${`
-    </emu-grammar>
-  </del>
-  <ins class="block">
-    <emu-grammar>
-    TemplateHead[Tagged] ::
-      ``` TemplateCharacters[?Tagged]? `${`
-    </emu-grammar>
-  </ins>
 
-  <del class="block">
-    <emu-grammar>
     TemplateSubstitutionTail ::
       TemplateMiddle
       TemplateTail
-    </emu-grammar>
-  </del>
-  <ins class="block">
-    <emu-grammar>
-    TemplateSubstitutionTail[Tagged] ::
-      TemplateMiddle[?Tagged]
-      TemplateTail[?Tagged]
-    </emu-grammar>
-  </ins>
 
-  <del class="block">
-    <emu-grammar>
     TemplateMiddle ::
       `}` TemplateCharacters? `${`
-    </emu-grammar>
-  </del>
-  <ins class="block">
-    <emu-grammar>
-    TemplateMiddle[Tagged] ::
-      `}` TemplateCharacters[?Tagged]? `${`
-    </emu-grammar>
-  </ins>
 
-  <del class="block">
-    <emu-grammar>
     TemplateTail ::
       `}` TemplateCharacters? ```
-    </emu-grammar>
-  </del>
-  <ins class="block">
-    <emu-grammar>
-    TemplateTail[Tagged] ::
-      `}` TemplateCharacters[?Tagged]? ```
-    </emu-grammar>
-  </ins>
 
-  <del class="block">
-    <emu-grammar>
     TemplateCharacters ::
       TemplateCharacter TemplateCharacters?
-    </emu-grammar>
-  </del>
-  <ins class="block">
-    <emu-grammar>
-    TemplateCharacters[Tagged] ::
-      TemplateCharacter[?Tagged] TemplateCharacters[?Tagged]?
-    </emu-grammar>
-  </ins>
+  </emu-grammar>
 
   <del class="block">
     <emu-grammar>
@@ -259,10 +104,10 @@ toc: true
   </del>
   <ins class="block">
     <emu-grammar>
-    TemplateCharacter[Tagged] ::
+    TemplateCharacter ::
       `$` [lookahead != `{` ]
       `\` EscapeSequence
-      [+Tagged] `\` NotEscapeSequence
+      `\` NotEscapeSequence
       LineContinuation
       LineTerminatorSequence
       SourceCharacter but not one of ``` or `\` or `$` or LineTerminator
@@ -542,22 +387,66 @@ toc: true
   <ins class="block">
     <emu-grammar>
       TemplateLiteral[Yield, Tagged] :
-        NoSubstitutionTemplate[?Tagged]
+        NoSubstitutionTemplate
         SubstitutionTemplate[?Yield, ?Tagged]
 
       SubstitutionTemplate[Yield, Tagged] :
-        TemplateHead[?Tagged] Expression[In, ?Yield] TemplateSpans[?Yield, ?Tagged]
+        TemplateHead Expression[In, ?Yield] TemplateSpans[?Yield, ?Tagged]
 
       TemplateSpans[Yield, Tagged] :
-        TemplateTail[?Tagged]
-        TemplateMiddleList[?Yield, ?Tagged] TemplateTail[?Tagged]
+        TemplateTail
+        TemplateMiddleList[?Yield, ?Tagged] TemplateTail
 
       TemplateMiddleList[Yield, Tagged] :
-        TemplateMiddle[?Tagged] Expression[In, ?Yield]
-        TemplateMiddleList[?Yield, ?Tagged] TemplateMiddle[?Tagged] Expression[In, ?Yield]
+        TemplateMiddle Expression[In, ?Yield]
+        TemplateMiddleList[?Yield, ?Tagged] TemplateMiddle Expression[In, ?Yield]
     </emu-grammar>
   </ins>
 </emu-clause>
+
+
+<ins class="block">
+<emu-clause id="sec-static-semantics-template-early-errors">
+  <h1>Static Semantics: Early Errors</h1>
+  <emu-grammar>
+      TemplateLiteral[Yield, Tagged] : NoSubstitutionTemplate
+  </emu-grammar>
+  <ul>
+    <li>
+      It is a Syntax Error if the Tagged parameter was set and |NoSubstitutionTemplate| contains |NotEscapeSequence|.
+    </li>
+  </ul>
+
+  <emu-grammar>
+      SubstitutionTemplate[Yield, Tagged] : TemplateHead Expression[In, ?Yield] TemplateSpans[?Yield, ?Tagged]
+  </emu-grammar>
+  <ul>
+    <li>
+      It is a Syntax Error if the Tagged parameter was set and |TemplateHead| contains |NotEscapeSequence|.
+    </li>
+  </ul>
+
+  <emu-grammar>
+      TemplateSpans[Yield, Tagged] : TemplateTail
+  </emu-grammar>
+  <ul>
+    <li>
+      It is a Syntax Error if the Tagged parameter was set and |TemplateTail| contains |NotEscapeSequence|.
+    </li>
+  </ul>
+
+  <emu-grammar>
+      TemplateMiddleList[Yield, Tagged] :
+        TemplateMiddle Expression[In, ?Yield]
+        TemplateMiddleList[?Yield, ?Tagged] TemplateMiddle Expression[In, ?Yield]
+  </emu-grammar>
+  <ul>
+    <li>
+      It is a Syntax Error if the Tagged parameter was set and |TemplateMiddle| contains |NotEscapeSequence|.
+    </li>
+  </ul>
+</emu-clause>
+</ins>
 
 <!-- es6num="12.2.9.1" -->
 <!-- <emu-clause id="sec-static-semantics-templatestrings">

@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="ecmarkup.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
 <script src="ecmarkup.js"></script>
-<title>Template Literal Revision</title><script type="application/json" id="menu-search-biblio">[{"type":"clause","id":"","aoid":null,"title":"Introduction","number":"","namespace":"<no location>","location":"","key":"Introduction"},{"type":"clause","id":"sec-ecmascript-language-lexical-grammar","aoid":null,"title":"(11) ECMAScript Language: Lexical Grammar","number":"1","namespace":"<no location>","location":"","key":"(11) ECMAScript Language: Lexical Grammar"},{"type":"clause","id":"sec-tokens","aoid":null,"title":"(11.5) Tokens","number":"2","namespace":"<no location>","location":"","key":"(11.5) Tokens"},{"type":"clause","id":"sec-template-literal-lexical-components","aoid":null,"title":"(11.8.6) Template Literal Lexical Components","number":"3","namespace":"<no location>","location":"","key":"(11.8.6) Template Literal Lexical Components"},{"type":"clause","id":"sec-static-semantics-tv-and-trv","aoid":null,"title":"(11.8.6.1) Static Semantics: TV and TRV","number":"4","namespace":"<no location>","location":"","key":"(11.8.6.1) Static Semantics: TV and TRV"},{"type":"clause","id":"sec-template-literals","aoid":null,"title":"(12.2.9) Template Literals","number":"5","namespace":"<no location>","location":"","key":"(12.2.9) Template Literals"},{"type":"clause","id":"sec-left-hand-side-expressions","aoid":null,"title":"(12.3) Left-Hand-Side Expressions","number":"6","namespace":"<no location>","location":"","key":"(12.3) Left-Hand-Side Expressions"},{"type":"clause","id":"sec-copyright-and-software-license","aoid":null,"title":"Copyright & Software License","number":"A","namespace":"<no location>","location":"","key":"Copyright & Software License"},{"type":"production","id":"prod-InputElementDiv","name":"InputElementDiv","namespace":"<no location>","location":"","key":"InputElementDiv"},{"type":"production","id":"prod-InputElementRegExp","name":"InputElementRegExp","namespace":"<no location>","location":"","key":"InputElementRegExp"},{"type":"production","id":"prod-InputElementRegExpOrTemplateTail","name":"InputElementRegExpOrTemplateTail","namespace":"<no location>","location":"","key":"InputElementRegExpOrTemplateTail"},{"type":"production","id":"prod-InputElementTemplateTail","name":"InputElementTemplateTail","namespace":"<no location>","location":"","key":"InputElementTemplateTail"},{"type":"production","id":"prod-CommonToken","name":"CommonToken","namespace":"<no location>","location":"","key":"CommonToken"},{"type":"production","id":"prod-Template","name":"Template","namespace":"<no location>","location":"","key":"Template"},{"type":"production","id":"prod-NoSubstitutionTemplate","name":"NoSubstitutionTemplate","namespace":"<no location>","location":"","key":"NoSubstitutionTemplate"},{"type":"production","id":"prod-TemplateHead","name":"TemplateHead","namespace":"<no location>","location":"","key":"TemplateHead"},{"type":"production","id":"prod-TemplateSubstitutionTail","name":"TemplateSubstitutionTail","namespace":"<no location>","location":"","key":"TemplateSubstitutionTail"},{"type":"production","id":"prod-TemplateMiddle","name":"TemplateMiddle","namespace":"<no location>","location":"","key":"TemplateMiddle"},{"type":"production","id":"prod-TemplateTail","name":"TemplateTail","namespace":"<no location>","location":"","key":"TemplateTail"},{"type":"production","id":"prod-TemplateCharacters","name":"TemplateCharacters","namespace":"<no location>","location":"","key":"TemplateCharacters"},{"type":"production","id":"prod-TemplateCharacter","name":"TemplateCharacter","namespace":"<no location>","location":"","key":"TemplateCharacter"},{"type":"production","id":"prod-NotEscapeSequence","name":"NotEscapeSequence","namespace":"<no location>","location":"","key":"NotEscapeSequence"},{"type":"production","id":"prod-NotCodePoint","name":"NotCodePoint","namespace":"<no location>","location":"","key":"NotCodePoint"},{"type":"production","id":"prod-CodePoint","name":"CodePoint","namespace":"<no location>","location":"","key":"CodePoint"},{"type":"production","id":"prod-LineContinuation","name":"LineContinuation","namespace":"<no location>","location":"","key":"LineContinuation"},{"type":"production","id":"prod-EscapeSequence","name":"EscapeSequence","namespace":"<no location>","location":"","key":"EscapeSequence"},{"type":"production","id":"prod-DecimalDigit","name":"DecimalDigit","namespace":"<no location>","location":"","key":"DecimalDigit"},{"type":"production","id":"prod-CharacterEscapeSequence","name":"CharacterEscapeSequence","namespace":"<no location>","location":"","key":"CharacterEscapeSequence"},{"type":"production","id":"prod-SingleEscapeCharacter","name":"SingleEscapeCharacter","namespace":"<no location>","location":"","key":"SingleEscapeCharacter"},{"type":"production","id":"prod-HexEscapeSequence","name":"HexEscapeSequence","namespace":"<no location>","location":"","key":"HexEscapeSequence"},{"type":"production","id":"prod-UnicodeEscapeSequence","name":"UnicodeEscapeSequence","namespace":"<no location>","location":"","key":"UnicodeEscapeSequence"},{"type":"production","id":"prod-Hex4Digits","name":"Hex4Digits","namespace":"<no location>","location":"","key":"Hex4Digits"},{"type":"production","id":"prod-HexDigits","name":"HexDigits","namespace":"<no location>","location":"","key":"HexDigits"},{"type":"production","id":"prod-LineTerminatorSequence","name":"LineTerminatorSequence","namespace":"<no location>","location":"","key":"LineTerminatorSequence"},{"type":"production","id":"prod-TemplateLiteral","name":"TemplateLiteral","namespace":"<no location>","location":"","key":"TemplateLiteral"},{"type":"production","id":"prod-SubstitutionTemplate","name":"SubstitutionTemplate","namespace":"<no location>","location":"","key":"SubstitutionTemplate"},{"type":"production","id":"prod-TemplateSpans","name":"TemplateSpans","namespace":"<no location>","location":"","key":"TemplateSpans"},{"type":"production","id":"prod-TemplateMiddleList","name":"TemplateMiddleList","namespace":"<no location>","location":"","key":"TemplateMiddleList"},{"type":"production","id":"prod-MemberExpression","name":"MemberExpression","namespace":"<no location>","location":"","key":"MemberExpression"},{"type":"production","id":"prod-CallExpression","name":"CallExpression","namespace":"<no location>","location":"","key":"CallExpression"}]</script></head><body><div id="menu-toggle">☰</div><div id="menu"><div id="menu-search"><input type="text" id="menu-search-box" placeholder="Search..."><div id="menu-search-results" class="inactive"></div></div><div id="menu-toc"><ol class="toc"><li><span class="item-toggle-none"></span><a href="#" title="Introduction"><span class="secnum"></span> Introduction</a></li><li><span class="item-toggle-none"></span><a href="#sec-ecmascript-language-lexical-grammar" title="(11) ECMAScript Language: Lexical Grammar"><span class="secnum">1</span> (11) ECMAScript Language: Lexical Grammar</a></li><li><span class="item-toggle-none"></span><a href="#sec-tokens" title="(11.5) Tokens"><span class="secnum">2</span> (11.5) Tokens</a></li><li><span class="item-toggle-none"></span><a href="#sec-template-literal-lexical-components" title="(11.8.6) Template Literal Lexical Components"><span class="secnum">3</span> (11.8.6) Template Literal Lexical Components</a></li><li><span class="item-toggle-none"></span><a href="#sec-static-semantics-tv-and-trv" title="(11.8.6.1) Static Semantics: TV and TRV"><span class="secnum">4</span> (11.8.6.1) SS: TV and TRV</a></li><li><span class="item-toggle-none"></span><a href="#sec-template-literals" title="(12.2.9) Template Literals"><span class="secnum">5</span> (12.2.9) Template Literals</a></li><li><span class="item-toggle-none"></span><a href="#sec-left-hand-side-expressions" title="(12.3) Left-Hand-Side Expressions"><span class="secnum">6</span> (12.3) Left-Hand-Side Expressions</a></li><li><span class="item-toggle-none"></span><a href="#sec-copyright-and-software-license" title="Copyright &amp; Software License"><span class="secnum">A</span> Copyright &amp; Software License</a></li></ol></div></div><h1 class="version">Stage 1 Draft / July 7, 2016</h1><h1 class="title">Template Literal Revision</h1>
+<title>Template Literal Revision</title><script type="application/json" id="menu-search-biblio">[{"type":"clause","id":"","aoid":null,"title":"Introduction","number":"","namespace":"<no location>","location":"","key":"Introduction"},{"type":"clause","id":"sec-template-literal-lexical-components","aoid":null,"title":"(11.8.6) Template Literal Lexical Components","number":"1","namespace":"<no location>","location":"","key":"(11.8.6) Template Literal Lexical Components"},{"type":"clause","id":"sec-static-semantics-tv-and-trv","aoid":null,"title":"(11.8.6.1) Static Semantics: TV and TRV","number":"2","namespace":"<no location>","location":"","key":"(11.8.6.1) Static Semantics: TV and TRV"},{"type":"clause","id":"sec-template-literals","aoid":null,"title":"(12.2.9) Template Literals","number":"3","namespace":"<no location>","location":"","key":"(12.2.9) Template Literals"},{"type":"clause","id":"sec-static-semantics-template-early-errors","aoid":null,"title":"Static Semantics: Early Errors","number":"4","namespace":"<no location>","location":"","key":"Static Semantics: Early Errors"},{"type":"clause","id":"sec-left-hand-side-expressions","aoid":null,"title":"(12.3) Left-Hand-Side Expressions","number":"5","namespace":"<no location>","location":"","key":"(12.3) Left-Hand-Side Expressions"},{"type":"clause","id":"sec-copyright-and-software-license","aoid":null,"title":"Copyright & Software License","number":"A","namespace":"<no location>","location":"","key":"Copyright & Software License"},{"type":"production","id":"prod-Template","name":"Template","namespace":"<no location>","location":"","key":"Template"},{"type":"production","id":"prod-NoSubstitutionTemplate","name":"NoSubstitutionTemplate","namespace":"<no location>","location":"","key":"NoSubstitutionTemplate"},{"type":"production","id":"prod-TemplateHead","name":"TemplateHead","namespace":"<no location>","location":"","key":"TemplateHead"},{"type":"production","id":"prod-TemplateSubstitutionTail","name":"TemplateSubstitutionTail","namespace":"<no location>","location":"","key":"TemplateSubstitutionTail"},{"type":"production","id":"prod-TemplateMiddle","name":"TemplateMiddle","namespace":"<no location>","location":"","key":"TemplateMiddle"},{"type":"production","id":"prod-TemplateTail","name":"TemplateTail","namespace":"<no location>","location":"","key":"TemplateTail"},{"type":"production","id":"prod-TemplateCharacters","name":"TemplateCharacters","namespace":"<no location>","location":"","key":"TemplateCharacters"},{"type":"production","id":"prod-TemplateCharacter","name":"TemplateCharacter","namespace":"<no location>","location":"","key":"TemplateCharacter"},{"type":"production","id":"prod-NotEscapeSequence","name":"NotEscapeSequence","namespace":"<no location>","location":"","key":"NotEscapeSequence"},{"type":"production","id":"prod-NotCodePoint","name":"NotCodePoint","namespace":"<no location>","location":"","key":"NotCodePoint"},{"type":"production","id":"prod-CodePoint","name":"CodePoint","namespace":"<no location>","location":"","key":"CodePoint"},{"type":"production","id":"prod-LineContinuation","name":"LineContinuation","namespace":"<no location>","location":"","key":"LineContinuation"},{"type":"production","id":"prod-EscapeSequence","name":"EscapeSequence","namespace":"<no location>","location":"","key":"EscapeSequence"},{"type":"production","id":"prod-DecimalDigit","name":"DecimalDigit","namespace":"<no location>","location":"","key":"DecimalDigit"},{"type":"production","id":"prod-CharacterEscapeSequence","name":"CharacterEscapeSequence","namespace":"<no location>","location":"","key":"CharacterEscapeSequence"},{"type":"production","id":"prod-SingleEscapeCharacter","name":"SingleEscapeCharacter","namespace":"<no location>","location":"","key":"SingleEscapeCharacter"},{"type":"production","id":"prod-HexEscapeSequence","name":"HexEscapeSequence","namespace":"<no location>","location":"","key":"HexEscapeSequence"},{"type":"production","id":"prod-UnicodeEscapeSequence","name":"UnicodeEscapeSequence","namespace":"<no location>","location":"","key":"UnicodeEscapeSequence"},{"type":"production","id":"prod-Hex4Digits","name":"Hex4Digits","namespace":"<no location>","location":"","key":"Hex4Digits"},{"type":"production","id":"prod-HexDigits","name":"HexDigits","namespace":"<no location>","location":"","key":"HexDigits"},{"type":"production","id":"prod-LineTerminatorSequence","name":"LineTerminatorSequence","namespace":"<no location>","location":"","key":"LineTerminatorSequence"},{"type":"production","id":"prod-TemplateLiteral","name":"TemplateLiteral","namespace":"<no location>","location":"","key":"TemplateLiteral"},{"type":"production","id":"prod-SubstitutionTemplate","name":"SubstitutionTemplate","namespace":"<no location>","location":"","key":"SubstitutionTemplate"},{"type":"production","id":"prod-TemplateSpans","name":"TemplateSpans","namespace":"<no location>","location":"","key":"TemplateSpans"},{"type":"production","id":"prod-TemplateMiddleList","name":"TemplateMiddleList","namespace":"<no location>","location":"","key":"TemplateMiddleList"},{"type":"production","id":"prod-MemberExpression","name":"MemberExpression","namespace":"<no location>","location":"","key":"MemberExpression"},{"type":"production","id":"prod-CallExpression","name":"CallExpression","namespace":"<no location>","location":"","key":"CallExpression"}]</script></head><body><div id="menu-toggle">☰</div><div id="menu"><div id="menu-search"><input type="text" id="menu-search-box" placeholder="Search..."><div id="menu-search-results" class="inactive"></div></div><div id="menu-toc"><ol class="toc"><li><span class="item-toggle-none"></span><a href="#" title="Introduction"><span class="secnum"></span> Introduction</a></li><li><span class="item-toggle-none"></span><a href="#sec-template-literal-lexical-components" title="(11.8.6) Template Literal Lexical Components"><span class="secnum">1</span> (11.8.6) Template Literal Lexical Components</a></li><li><span class="item-toggle-none"></span><a href="#sec-static-semantics-tv-and-trv" title="(11.8.6.1) Static Semantics: TV and TRV"><span class="secnum">2</span> (11.8.6.1) SS: TV and TRV</a></li><li><span class="item-toggle-none"></span><a href="#sec-template-literals" title="(12.2.9) Template Literals"><span class="secnum">3</span> (12.2.9) Template Literals</a></li><li><span class="item-toggle-none"></span><a href="#sec-static-semantics-template-early-errors" title="Static Semantics: Early Errors"><span class="secnum">4</span> SS: Early Errors</a></li><li><span class="item-toggle-none"></span><a href="#sec-left-hand-side-expressions" title="(12.3) Left-Hand-Side Expressions"><span class="secnum">5</span> (12.3) Left-Hand-Side Expressions</a></li><li><span class="item-toggle-none"></span><a href="#sec-copyright-and-software-license" title="Copyright &amp; Software License"><span class="secnum">A</span> Copyright &amp; Software License</a></li></ol></div></div><h1 class="version">Stage 1 Draft / July 22, 2016</h1><h1 class="title">Template Literal Revision</h1>
 
 
 <emu-intro>
@@ -48,171 +48,34 @@ tag<span class="hljs-string">`\unicode and \u{55}`</span></code></pre>
   <pre><code class="javascript hljs"><span class="hljs-keyword">let</span> bad = <span class="hljs-string">`bad escape sequence: \unicode`</span>; <span class="hljs-comment">// throws early error</span></code></pre>
 </emu-intro>
 
-<!-- es6num="11" -->
-<emu-clause id="sec-ecmascript-language-lexical-grammar">
-  <h1><span class="secnum">1</span>(<a href="https://tc39.github.io/ecma262/#sec-ecmascript-language-lexical-grammar">11</a>) ECMAScript Language: Lexical Grammar<span class="utils"><span class="anchor"><a href="#sec-ecmascript-language-lexical-grammar">#</a></span></span></h1>
-  <p>The source text of an ECMAScript <emu-nt><a href="https://tc39.github.io/ecma262/#prod-Script">Script</a></emu-nt> or <emu-nt><a href="https://tc39.github.io/ecma262/#prod-Module">Module</a></emu-nt> is first converted into a sequence of input elements, which are tokens, line terminators, comments, or white space. The source text is scanned from left to right, repeatedly taking the longest possible sequence of code points as the next input element.</p>
-  <p>There are several situations where the identification of lexical input elements is sensitive to the syntactic grammar context that is consuming the input elements. This requires multiple goal symbols for the lexical grammar. The <emu-nt><a href="#prod-InputElementRegExpOrTemplateTail">InputElementRegExpOrTemplateTail</a></emu-nt> goal is used in syntactic grammar contexts where a <emu-nt><a href="https://tc39.github.io/ecma262/#prod-RegularExpressionLiteral">RegularExpressionLiteral</a></emu-nt>, a <emu-nt><a href="#prod-TemplateMiddle">TemplateMiddle</a></emu-nt>, or a <emu-nt><a href="#prod-TemplateTail">TemplateTail</a></emu-nt> is permitted. The <emu-nt><a href="#prod-InputElementRegExp">InputElementRegExp</a></emu-nt> goal symbol is used in all syntactic grammar contexts where a <emu-nt><a href="https://tc39.github.io/ecma262/#prod-RegularExpressionLiteral">RegularExpressionLiteral</a></emu-nt> is permitted but neither a <emu-nt><a href="#prod-TemplateMiddle">TemplateMiddle</a></emu-nt>, nor a <emu-nt><a href="#prod-TemplateTail">TemplateTail</a></emu-nt> is permitted. The <emu-nt><a href="#prod-InputElementTemplateTail">InputElementTemplateTail</a></emu-nt> goal is used in all syntactic grammar contexts where a <emu-nt><a href="#prod-TemplateMiddle">TemplateMiddle</a></emu-nt> or a <emu-nt><a href="#prod-TemplateTail">TemplateTail</a></emu-nt> is permitted but a <emu-nt><a href="https://tc39.github.io/ecma262/#prod-RegularExpressionLiteral">RegularExpressionLiteral</a></emu-nt> is not permitted. In all other contexts, <emu-nt><a href="#prod-InputElementDiv">InputElementDiv</a></emu-nt> is used as the lexical goal symbol.</p>
-  <emu-note><span class="note">Note</span>
-    <p>The use of multiple lexical goals ensures that there are no lexical ambiguities that would affect automatic semicolon insertion. For example, there are no syntactic grammar contexts where both a leading division or division-assignment, and a leading <emu-nt><a href="https://tc39.github.io/ecma262/#prod-RegularExpressionLiteral">RegularExpressionLiteral</a></emu-nt> are permitted. This is not affected by semicolon insertion (see  <emu-xref href="#sec-automatic-semicolon-insertion"><a href="https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion">11.9</a></emu-xref>); in examples such as the following:</p>
-    <pre><code class="javascript hljs">a = b
-/hi/g.exec(c).map(d);</code></pre>
-    <p>where the first non-whitespace, non-comment code point after a <emu-nt><a href="https://tc39.github.io/ecma262/#prod-LineTerminator">LineTerminator</a></emu-nt> is U+002F (SOLIDUS) and the syntactic context allows division or division-assignment, no semicolon is inserted at the <emu-nt><a href="https://tc39.github.io/ecma262/#prod-LineTerminator">LineTerminator</a></emu-nt>. That is, the above example is interpreted in the same way as:</p>
-    <pre><code class="javascript hljs">a = b / hi / g.exec(c).map(d);</code></pre>
-  </emu-note>
-  <h2>Syntax</h2>
-  <emu-grammar><emu-production name="InputElementDiv" type="lexical" id="prod-InputElementDiv">
-    <emu-nt><a href="#prod-InputElementDiv">InputElementDiv</a></emu-nt><emu-geq>::</emu-geq><emu-rhs a="1424dc49"><emu-nt><a href="https://tc39.github.io/ecma262/#prod-WhiteSpace">WhiteSpace</a></emu-nt></emu-rhs>
-    <emu-rhs a="3b331ccd"><emu-nt><a href="https://tc39.github.io/ecma262/#prod-LineTerminator">LineTerminator</a></emu-nt></emu-rhs>
-    <emu-rhs a="153d7a58"><emu-nt><a href="https://tc39.github.io/ecma262/#prod-Comment">Comment</a></emu-nt></emu-rhs>
-    <emu-rhs a="83158895"><emu-nt><a href="#prod-CommonToken">CommonToken</a></emu-nt></emu-rhs>
-    <emu-rhs a="28035084"><emu-nt><a href="https://tc39.github.io/ecma262/#prod-DivPunctuator">DivPunctuator</a></emu-nt></emu-rhs>
-    <emu-rhs a="121314a7"><emu-nt><a href="https://tc39.github.io/ecma262/#prod-RightBracePunctuator">RightBracePunctuator</a></emu-nt></emu-rhs>
-</emu-production>
-<emu-production name="InputElementRegExp" type="lexical" id="prod-InputElementRegExp">
-    <emu-nt><a href="#prod-InputElementRegExp">InputElementRegExp</a></emu-nt><emu-geq>::</emu-geq><emu-rhs a="1424dc49"><emu-nt><a href="https://tc39.github.io/ecma262/#prod-WhiteSpace">WhiteSpace</a></emu-nt></emu-rhs>
-    <emu-rhs a="3b331ccd"><emu-nt><a href="https://tc39.github.io/ecma262/#prod-LineTerminator">LineTerminator</a></emu-nt></emu-rhs>
-    <emu-rhs a="153d7a58"><emu-nt><a href="https://tc39.github.io/ecma262/#prod-Comment">Comment</a></emu-nt></emu-rhs>
-    <emu-rhs a="83158895"><emu-nt><a href="#prod-CommonToken">CommonToken</a></emu-nt></emu-rhs>
-    <emu-rhs a="121314a7"><emu-nt><a href="https://tc39.github.io/ecma262/#prod-RightBracePunctuator">RightBracePunctuator</a></emu-nt></emu-rhs>
-    <emu-rhs a="31b672e8"><emu-nt><a href="https://tc39.github.io/ecma262/#prod-RegularExpressionLiteral">RegularExpressionLiteral</a></emu-nt></emu-rhs>
-</emu-production></emu-grammar>
-
-  <emu-production name="InputElementRegExpOrTemplateTail" type="lexical" id="prod-InputElementRegExpOrTemplateTail">
-    <emu-nt><a href="#prod-InputElementRegExpOrTemplateTail">InputElementRegExpOrTemplateTail</a></emu-nt><emu-geq>::</emu-geq><emu-rhs><emu-nt><a href="https://tc39.github.io/ecma262/#prod-WhiteSpace">WhiteSpace</a></emu-nt></emu-rhs>
-    <emu-rhs><emu-nt><a href="https://tc39.github.io/ecma262/#prod-LineTerminator">LineTerminator</a></emu-nt></emu-rhs>
-    <emu-rhs><emu-nt><a href="https://tc39.github.io/ecma262/#prod-Comment">Comment</a></emu-nt></emu-rhs>
-    <emu-rhs><emu-nt><a href="#prod-CommonToken">CommonToken</a></emu-nt></emu-rhs>
-    <emu-rhs><emu-nt><a href="https://tc39.github.io/ecma262/#prod-RegularExpressionLiteral">RegularExpressionLiteral</a></emu-nt></emu-rhs>
-    <del class="block">
-      <emu-rhs><emu-nt><a href="#prod-TemplateSubstitutionTail">TemplateSubstitutionTail</a></emu-nt></emu-rhs>
-    </del>
-    <ins class="block">
-      <emu-rhs><emu-nt params="Tagged"><a href="#prod-TemplateSubstitutionTail">TemplateSubstitutionTail</a><emu-mods><emu-params>[Tagged]</emu-params></emu-mods></emu-nt></emu-rhs>
-    </ins>
-  </emu-production>
-
-  <emu-production name="InputElementTemplateTail" type="lexical" id="prod-InputElementTemplateTail">
-    <emu-nt><a href="#prod-InputElementTemplateTail">InputElementTemplateTail</a></emu-nt><emu-geq>::</emu-geq><emu-rhs><emu-nt><a href="https://tc39.github.io/ecma262/#prod-WhiteSpace">WhiteSpace</a></emu-nt></emu-rhs>
-    <emu-rhs><emu-nt><a href="https://tc39.github.io/ecma262/#prod-LineTerminator">LineTerminator</a></emu-nt></emu-rhs>
-    <emu-rhs><emu-nt><a href="https://tc39.github.io/ecma262/#prod-Comment">Comment</a></emu-nt></emu-rhs>
-    <emu-rhs><emu-nt><a href="#prod-CommonToken">CommonToken</a></emu-nt></emu-rhs>
-    <emu-rhs><emu-nt><a href="https://tc39.github.io/ecma262/#prod-DivPunctuator">DivPunctuator</a></emu-nt></emu-rhs>
-    <del class="block">
-      <emu-rhs><emu-nt><a href="#prod-TemplateSubstitutionTail">TemplateSubstitutionTail</a></emu-nt></emu-rhs>
-    </del>
-    <ins class="block">
-      <emu-rhs><emu-nt params="Tagged"><a href="#prod-TemplateSubstitutionTail">TemplateSubstitutionTail</a><emu-mods><emu-params>[Tagged]</emu-params></emu-mods></emu-nt></emu-rhs>
-    </ins>
-  </emu-production>
-</emu-clause>
-
-<!-- es6num="11.5" -->
-<emu-clause id="sec-tokens">
-  <h1><span class="secnum">2</span>(<a href="https://tc39.github.io/ecma262/#sec-tokens">11.5</a>) Tokens<span class="utils"><span class="anchor"><a href="#sec-tokens">#</a></span></span></h1>
-  <h2>Syntax</h2>
-  <emu-production name="CommonToken" type="lexical" id="prod-CommonToken">
-    <emu-nt><a href="#prod-CommonToken">CommonToken</a></emu-nt><emu-geq>::</emu-geq><emu-rhs><emu-nt><a href="https://tc39.github.io/ecma262/#prod-IdentifierName">IdentifierName</a></emu-nt></emu-rhs>
-    <emu-rhs><emu-nt><a href="https://tc39.github.io/ecma262/#prod-Punctuator">Punctuator</a></emu-nt></emu-rhs>
-    <emu-rhs><emu-nt><a href="https://tc39.github.io/ecma262/#prod-NumericLiteral">NumericLiteral</a></emu-nt></emu-rhs>
-    <emu-rhs><emu-nt><a href="https://tc39.github.io/ecma262/#prod-StringLiteral">StringLiteral</a></emu-nt></emu-rhs>
-    <del class="block">
-      <emu-rhs><emu-nt><a href="#prod-Template">Template</a></emu-nt></emu-rhs>
-    </del>
-    <ins class="block">
-      <emu-rhs><emu-nt params="Tagged"><a href="#prod-Template">Template</a><emu-mods><emu-params>[Tagged]</emu-params></emu-mods></emu-nt></emu-rhs>
-    </ins>
-  </emu-production>
-  <emu-note><span class="note">Note</span>
-    <p>The <emu-nt><a href="https://tc39.github.io/ecma262/#prod-DivPunctuator">DivPunctuator</a></emu-nt>, <emu-nt><a href="https://tc39.github.io/ecma262/#prod-RegularExpressionLiteral">RegularExpressionLiteral</a></emu-nt>, <emu-nt><a href="https://tc39.github.io/ecma262/#prod-RightBracePunctuator">RightBracePunctuator</a></emu-nt>, and <emu-nt><a href="#prod-TemplateSubstitutionTail">TemplateSubstitutionTail</a></emu-nt> productions derive additional tokens that are not included in the <emu-nt><a href="#prod-CommonToken">CommonToken</a></emu-nt> production.</p>
-  </emu-note>
-</emu-clause>
-
 <!-- es6num="11.8.6" -->
 <emu-clause id="sec-template-literal-lexical-components">
-  <h1><span class="secnum">3</span>(<a href="https://tc39.github.io/ecma262/#sec-template-literal-lexical-components">11.8.6</a>) Template Literal Lexical Components<span class="utils"><span class="anchor"><a href="#sec-template-literal-lexical-components">#</a></span></span></h1>
+  <h1><span class="secnum">1</span>(<a href="https://tc39.github.io/ecma262/#sec-template-literal-lexical-components">11.8.6</a>) Template Literal Lexical Components<span class="utils"><span class="anchor"><a href="#sec-template-literal-lexical-components">#</a></span></span></h1>
   <h2>Syntax</h2>
 
-  <del class="block">
-    <emu-grammar><emu-production name="Template" type="lexical" id="prod-Template">
+  <emu-grammar><emu-production name="Template" type="lexical" id="prod-Template">
     <emu-nt><a href="#prod-Template">Template</a></emu-nt><emu-geq>::</emu-geq><emu-rhs a="7bf3ad2b"><emu-nt><a href="#prod-NoSubstitutionTemplate">NoSubstitutionTemplate</a></emu-nt></emu-rhs>
     <emu-rhs a="ab9a4b96"><emu-nt><a href="#prod-TemplateHead">TemplateHead</a></emu-nt></emu-rhs>
-</emu-production></emu-grammar>
-  </del>
-  <ins class="block">
-    <emu-grammar><emu-production name="Template" params="Tagged" type="lexical">
-    <emu-nt params="Tagged"><a href="#prod-Template">Template</a><emu-mods><emu-params>[Tagged]</emu-params></emu-mods></emu-nt><emu-geq>::</emu-geq><emu-rhs a="1f61c3a3"><emu-nt params="?Tagged"><a href="#prod-NoSubstitutionTemplate">NoSubstitutionTemplate</a><emu-mods><emu-params>[?Tagged]</emu-params></emu-mods></emu-nt></emu-rhs>
-    <emu-rhs a="704f4252"><emu-nt params="?Tagged"><a href="#prod-TemplateHead">TemplateHead</a><emu-mods><emu-params>[?Tagged]</emu-params></emu-mods></emu-nt></emu-rhs>
-</emu-production></emu-grammar>
-  </ins>
-
-  <del class="block">
-    <emu-grammar><emu-production name="NoSubstitutionTemplate" type="lexical" id="prod-NoSubstitutionTemplate">
+</emu-production>
+<emu-production name="NoSubstitutionTemplate" type="lexical" id="prod-NoSubstitutionTemplate">
     <emu-nt><a href="#prod-NoSubstitutionTemplate">NoSubstitutionTemplate</a></emu-nt><emu-geq>::</emu-geq><emu-rhs a="056f5c6b"><emu-t>`</emu-t><emu-nt optional=""><a href="#prod-TemplateCharacters">TemplateCharacters</a><emu-mods><emu-opt>opt</emu-opt></emu-mods></emu-nt><emu-t>`</emu-t></emu-rhs>
-</emu-production></emu-grammar>
-  </del>
-  <ins class="block">
-    <emu-grammar><emu-production name="NoSubstitutionTemplate" params="Tagged" type="lexical">
-    <emu-nt params="Tagged"><a href="#prod-NoSubstitutionTemplate">NoSubstitutionTemplate</a><emu-mods><emu-params>[Tagged]</emu-params></emu-mods></emu-nt><emu-geq>::</emu-geq><emu-rhs a="52b1ae97"><emu-t>`</emu-t><emu-nt params="?Tagged" optional=""><a href="#prod-TemplateCharacters">TemplateCharacters</a><emu-mods><emu-params>[?Tagged]</emu-params><emu-opt>opt</emu-opt></emu-mods></emu-nt><emu-t>`</emu-t></emu-rhs>
-</emu-production></emu-grammar>
-  </ins>
-
-  <del class="block">
-    <emu-grammar><emu-production name="TemplateHead" type="lexical" id="prod-TemplateHead">
+</emu-production>
+<emu-production name="TemplateHead" type="lexical" id="prod-TemplateHead">
     <emu-nt><a href="#prod-TemplateHead">TemplateHead</a></emu-nt><emu-geq>::</emu-geq><emu-rhs a="bfb172fc"><emu-t>`</emu-t><emu-nt optional=""><a href="#prod-TemplateCharacters">TemplateCharacters</a><emu-mods><emu-opt>opt</emu-opt></emu-mods></emu-nt><emu-t>${</emu-t></emu-rhs>
-</emu-production></emu-grammar>
-  </del>
-  <ins class="block">
-    <emu-grammar><emu-production name="TemplateHead" params="Tagged" type="lexical">
-    <emu-nt params="Tagged"><a href="#prod-TemplateHead">TemplateHead</a><emu-mods><emu-params>[Tagged]</emu-params></emu-mods></emu-nt><emu-geq>::</emu-geq><emu-rhs a="186c4f34"><emu-t>`</emu-t><emu-nt params="?Tagged" optional=""><a href="#prod-TemplateCharacters">TemplateCharacters</a><emu-mods><emu-params>[?Tagged]</emu-params><emu-opt>opt</emu-opt></emu-mods></emu-nt><emu-t>${</emu-t></emu-rhs>
-</emu-production></emu-grammar>
-  </ins>
-
-  <del class="block">
-    <emu-grammar><emu-production name="TemplateSubstitutionTail" type="lexical" id="prod-TemplateSubstitutionTail">
+</emu-production>
+<emu-production name="TemplateSubstitutionTail" type="lexical" id="prod-TemplateSubstitutionTail">
     <emu-nt><a href="#prod-TemplateSubstitutionTail">TemplateSubstitutionTail</a></emu-nt><emu-geq>::</emu-geq><emu-rhs a="ccbc035d"><emu-nt><a href="#prod-TemplateMiddle">TemplateMiddle</a></emu-nt></emu-rhs>
     <emu-rhs a="57fe6188"><emu-nt><a href="#prod-TemplateTail">TemplateTail</a></emu-nt></emu-rhs>
-</emu-production></emu-grammar>
-  </del>
-  <ins class="block">
-    <emu-grammar><emu-production name="TemplateSubstitutionTail" params="Tagged" type="lexical">
-    <emu-nt params="Tagged"><a href="#prod-TemplateSubstitutionTail">TemplateSubstitutionTail</a><emu-mods><emu-params>[Tagged]</emu-params></emu-mods></emu-nt><emu-geq>::</emu-geq><emu-rhs a="a2e405f1"><emu-nt params="?Tagged"><a href="#prod-TemplateMiddle">TemplateMiddle</a><emu-mods><emu-params>[?Tagged]</emu-params></emu-mods></emu-nt></emu-rhs>
-    <emu-rhs a="c0542bdb"><emu-nt params="?Tagged"><a href="#prod-TemplateTail">TemplateTail</a><emu-mods><emu-params>[?Tagged]</emu-params></emu-mods></emu-nt></emu-rhs>
-</emu-production></emu-grammar>
-  </ins>
-
-  <del class="block">
-    <emu-grammar><emu-production name="TemplateMiddle" type="lexical" id="prod-TemplateMiddle">
+</emu-production>
+<emu-production name="TemplateMiddle" type="lexical" id="prod-TemplateMiddle">
     <emu-nt><a href="#prod-TemplateMiddle">TemplateMiddle</a></emu-nt><emu-geq>::</emu-geq><emu-rhs a="37635b4e"><emu-t>}</emu-t><emu-nt optional=""><a href="#prod-TemplateCharacters">TemplateCharacters</a><emu-mods><emu-opt>opt</emu-opt></emu-mods></emu-nt><emu-t>${</emu-t></emu-rhs>
-</emu-production></emu-grammar>
-  </del>
-  <ins class="block">
-    <emu-grammar><emu-production name="TemplateMiddle" params="Tagged" type="lexical">
-    <emu-nt params="Tagged"><a href="#prod-TemplateMiddle">TemplateMiddle</a><emu-mods><emu-params>[Tagged]</emu-params></emu-mods></emu-nt><emu-geq>::</emu-geq><emu-rhs a="f56802c6"><emu-t>}</emu-t><emu-nt params="?Tagged" optional=""><a href="#prod-TemplateCharacters">TemplateCharacters</a><emu-mods><emu-params>[?Tagged]</emu-params><emu-opt>opt</emu-opt></emu-mods></emu-nt><emu-t>${</emu-t></emu-rhs>
-</emu-production></emu-grammar>
-  </ins>
-
-  <del class="block">
-    <emu-grammar><emu-production name="TemplateTail" type="lexical" id="prod-TemplateTail">
+</emu-production>
+<emu-production name="TemplateTail" type="lexical" id="prod-TemplateTail">
     <emu-nt><a href="#prod-TemplateTail">TemplateTail</a></emu-nt><emu-geq>::</emu-geq><emu-rhs a="fcef5bc0"><emu-t>}</emu-t><emu-nt optional=""><a href="#prod-TemplateCharacters">TemplateCharacters</a><emu-mods><emu-opt>opt</emu-opt></emu-mods></emu-nt><emu-t>`</emu-t></emu-rhs>
-</emu-production></emu-grammar>
-  </del>
-  <ins class="block">
-    <emu-grammar><emu-production name="TemplateTail" params="Tagged" type="lexical">
-    <emu-nt params="Tagged"><a href="#prod-TemplateTail">TemplateTail</a><emu-mods><emu-params>[Tagged]</emu-params></emu-mods></emu-nt><emu-geq>::</emu-geq><emu-rhs a="e988cae6"><emu-t>}</emu-t><emu-nt params="?Tagged" optional=""><a href="#prod-TemplateCharacters">TemplateCharacters</a><emu-mods><emu-params>[?Tagged]</emu-params><emu-opt>opt</emu-opt></emu-mods></emu-nt><emu-t>`</emu-t></emu-rhs>
-</emu-production></emu-grammar>
-  </ins>
-
-  <del class="block">
-    <emu-grammar><emu-production name="TemplateCharacters" type="lexical" id="prod-TemplateCharacters">
+</emu-production>
+<emu-production name="TemplateCharacters" type="lexical" id="prod-TemplateCharacters">
     <emu-nt><a href="#prod-TemplateCharacters">TemplateCharacters</a></emu-nt><emu-geq>::</emu-geq><emu-rhs a="f8c26ac5"><emu-nt><a href="#prod-TemplateCharacter">TemplateCharacter</a></emu-nt><emu-nt optional=""><a href="#prod-TemplateCharacters">TemplateCharacters</a><emu-mods><emu-opt>opt</emu-opt></emu-mods></emu-nt></emu-rhs>
 </emu-production></emu-grammar>
-  </del>
-  <ins class="block">
-    <emu-grammar><emu-production name="TemplateCharacters" params="Tagged" type="lexical">
-    <emu-nt params="Tagged"><a href="#prod-TemplateCharacters">TemplateCharacters</a><emu-mods><emu-params>[Tagged]</emu-params></emu-mods></emu-nt><emu-geq>::</emu-geq><emu-rhs a="8ebbe4a7"><emu-nt params="?Tagged"><a href="#prod-TemplateCharacter">TemplateCharacter</a><emu-mods><emu-params>[?Tagged]</emu-params></emu-mods></emu-nt><emu-nt params="?Tagged" optional=""><a href="#prod-TemplateCharacters">TemplateCharacters</a><emu-mods><emu-params>[?Tagged]</emu-params><emu-opt>opt</emu-opt></emu-mods></emu-nt></emu-rhs>
-</emu-production></emu-grammar>
-  </ins>
 
   <del class="block">
     <emu-grammar><emu-production name="TemplateCharacter" type="lexical" id="prod-TemplateCharacter">
@@ -224,10 +87,10 @@ tag<span class="hljs-string">`\unicode and \u{55}`</span></code></pre>
 </emu-production></emu-grammar>
   </del>
   <ins class="block">
-    <emu-grammar><emu-production name="TemplateCharacter" params="Tagged" type="lexical">
-    <emu-nt params="Tagged"><a href="#prod-TemplateCharacter">TemplateCharacter</a><emu-mods><emu-params>[Tagged]</emu-params></emu-mods></emu-nt><emu-geq>::</emu-geq><emu-rhs a="03c3b542"><emu-t>$</emu-t><emu-gann>[lookahead ≠ <emu-t>{</emu-t>]</emu-gann></emu-rhs>
+    <emu-grammar><emu-production name="TemplateCharacter" type="lexical">
+    <emu-nt><a href="#prod-TemplateCharacter">TemplateCharacter</a></emu-nt><emu-geq>::</emu-geq><emu-rhs a="03c3b542"><emu-t>$</emu-t><emu-gann>[lookahead ≠ <emu-t>{</emu-t>]</emu-gann></emu-rhs>
     <emu-rhs a="ea7d8d26"><emu-t>\</emu-t><emu-nt><a href="#prod-EscapeSequence">EscapeSequence</a></emu-nt></emu-rhs>
-    <emu-rhs a="558106fc" constraints="+Tagged"><emu-constraints>[+Tagged]</emu-constraints><emu-t>\</emu-t><emu-nt><a href="#prod-NotEscapeSequence">NotEscapeSequence</a></emu-nt></emu-rhs>
+    <emu-rhs a="68cad9cc"><emu-t>\</emu-t><emu-nt><a href="#prod-NotEscapeSequence">NotEscapeSequence</a></emu-nt></emu-rhs>
     <emu-rhs a="00992933"><emu-nt><a href="#prod-LineContinuation">LineContinuation</a></emu-nt></emu-rhs>
     <emu-rhs a="544825da"><emu-nt><a href="#prod-LineTerminatorSequence">LineTerminatorSequence</a></emu-nt></emu-rhs>
     <emu-rhs a="4c80ea41"><emu-nt><a href="https://tc39.github.io/ecma262/#prod-SourceCharacter">SourceCharacter</a></emu-nt><emu-gmod>but not one of <emu-t>`</emu-t> or <emu-t>\</emu-t> or <emu-t>$</emu-t> or <emu-nt><a href="https://tc39.github.io/ecma262/#prod-LineTerminator">LineTerminator</a></emu-nt></emu-gmod></emu-rhs>
@@ -258,13 +121,13 @@ tag<span class="hljs-string">`\unicode and \u{55}`</span></code></pre>
 
   <p>A conforming implementation must not use the extended definition of <emu-nt><a href="#prod-EscapeSequence">EscapeSequence</a></emu-nt> described in  <emu-xref href="#sec-additional-syntax-string-literals"><a href="https://tc39.github.io/ecma262/#sec-additional-syntax-string-literals">B.1.2</a></emu-xref> when parsing a <emu-nt><a href="#prod-TemplateCharacter">TemplateCharacter</a></emu-nt>.</p>
   <emu-note><span class="note">Note</span>
-    <p><emu-nt><a href="#prod-TemplateSubstitutionTail">TemplateSubstitutionTail</a></emu-nt> is used by the <emu-nt><a href="#prod-InputElementTemplateTail">InputElementTemplateTail</a></emu-nt> alternative lexical goal.</p>
+    <p><emu-nt><a href="#prod-TemplateSubstitutionTail">TemplateSubstitutionTail</a></emu-nt> is used by the <emu-nt><a href="https://tc39.github.io/ecma262/#prod-InputElementTemplateTail">InputElementTemplateTail</a></emu-nt> alternative lexical goal.</p>
   </emu-note>
 </emu-clause>
 
 <!-- es6num="11.8.6.1" -->
 <emu-clause id="sec-static-semantics-tv-and-trv">
-  <h1><span class="secnum">4</span>(<a href="https://tc39.github.io/ecma262/#sec-static-semantics-tv-and-trv">11.8.6.1</a>) Static Semantics: TV and TRV<span class="utils"><span class="anchor"><a href="#sec-static-semantics-tv-and-trv">#</a></span></span></h1>
+  <h1><span class="secnum">2</span>(<a href="https://tc39.github.io/ecma262/#sec-static-semantics-tv-and-trv">11.8.6.1</a>) Static Semantics: TV and TRV<span class="utils"><span class="anchor"><a href="#sec-static-semantics-tv-and-trv">#</a></span></span></h1>
   <p>A template literal component is interpreted as a sequence of Unicode code points. The Template Value (TV) of a literal component is described in terms of code unit values (SV,  <emu-xref href="#sec-literals-string-literals"><a href="https://tc39.github.io/ecma262/#sec-literals-string-literals">11.8.4</a></emu-xref>) contributed by the various parts of the template literal component. As part of this process, some Unicode code points within the template component are interpreted as having a mathematical value (MV,  <emu-xref href="#sec-literals-numeric-literals"><a href="https://tc39.github.io/ecma262/#sec-literals-numeric-literals">11.8.3</a></emu-xref>). In determining a TV, escape sequences are replaced by the UTF-16 code unit(s) of the Unicode code point represented by the escape sequence. The Template Raw Value (TRV) is similar to a Template Value with the difference that in TRVs escape sequences are interpreted literally.</p>
   <ul>
     <li>
@@ -668,7 +531,7 @@ tag<span class="hljs-string">`\unicode and \u{55}`</span></code></pre>
 
 <!-- es6num="12.2.9" -->
 <emu-clause id="sec-template-literals">
-  <h1><span class="secnum">5</span>(<a href="https://tc39.github.io/ecma262/#sec-template-literals">12.2.9</a>) Template Literals<span class="utils"><span class="anchor"><a href="#sec-template-literals">#</a></span></span></h1>
+  <h1><span class="secnum">3</span>(<a href="https://tc39.github.io/ecma262/#sec-template-literals">12.2.9</a>) Template Literals<span class="utils"><span class="anchor"><a href="#sec-template-literals">#</a></span></span></h1>
   <h2>Syntax</h2>
 
   <del class="block">
@@ -691,22 +554,69 @@ tag<span class="hljs-string">`\unicode and \u{55}`</span></code></pre>
 
   <ins class="block">
     <emu-grammar><emu-production name="TemplateLiteral" params="Yield, Tagged">
-    <emu-nt params="Yield, Tagged"><a href="#prod-TemplateLiteral">TemplateLiteral</a><emu-mods><emu-params>[Yield, Tagged]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="1f61c3a3"><emu-nt params="?Tagged"><a href="#prod-NoSubstitutionTemplate">NoSubstitutionTemplate</a><emu-mods><emu-params>[?Tagged]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-nt params="Yield, Tagged"><a href="#prod-TemplateLiteral">TemplateLiteral</a><emu-mods><emu-params>[Yield, Tagged]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="7bf3ad2b"><emu-nt><a href="#prod-NoSubstitutionTemplate">NoSubstitutionTemplate</a></emu-nt></emu-rhs>
     <emu-rhs a="7b07e2cd"><emu-nt params="?Yield, ?Tagged"><a href="#prod-SubstitutionTemplate">SubstitutionTemplate</a><emu-mods><emu-params>[?Yield, ?Tagged]</emu-params></emu-mods></emu-nt></emu-rhs>
 </emu-production>
 <emu-production name="SubstitutionTemplate" params="Yield, Tagged">
-    <emu-nt params="Yield, Tagged"><a href="#prod-SubstitutionTemplate">SubstitutionTemplate</a><emu-mods><emu-params>[Yield, Tagged]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="b986491e"><emu-nt params="?Tagged"><a href="#prod-TemplateHead">TemplateHead</a><emu-mods><emu-params>[?Tagged]</emu-params></emu-mods></emu-nt><emu-nt params="In, ?Yield"><a href="https://tc39.github.io/ecma262/#prod-Expression">Expression</a><emu-mods><emu-params>[In, ?Yield]</emu-params></emu-mods></emu-nt><emu-nt params="?Yield, ?Tagged"><a href="#prod-TemplateSpans">TemplateSpans</a><emu-mods><emu-params>[?Yield, ?Tagged]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-nt params="Yield, Tagged"><a href="#prod-SubstitutionTemplate">SubstitutionTemplate</a><emu-mods><emu-params>[Yield, Tagged]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="afd08699"><emu-nt><a href="#prod-TemplateHead">TemplateHead</a></emu-nt><emu-nt params="In, ?Yield"><a href="https://tc39.github.io/ecma262/#prod-Expression">Expression</a><emu-mods><emu-params>[In, ?Yield]</emu-params></emu-mods></emu-nt><emu-nt params="?Yield, ?Tagged"><a href="#prod-TemplateSpans">TemplateSpans</a><emu-mods><emu-params>[?Yield, ?Tagged]</emu-params></emu-mods></emu-nt></emu-rhs>
 </emu-production>
 <emu-production name="TemplateSpans" params="Yield, Tagged">
-    <emu-nt params="Yield, Tagged"><a href="#prod-TemplateSpans">TemplateSpans</a><emu-mods><emu-params>[Yield, Tagged]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="c0542bdb"><emu-nt params="?Tagged"><a href="#prod-TemplateTail">TemplateTail</a><emu-mods><emu-params>[?Tagged]</emu-params></emu-mods></emu-nt></emu-rhs>
-    <emu-rhs a="38e004e9"><emu-nt params="?Yield, ?Tagged"><a href="#prod-TemplateMiddleList">TemplateMiddleList</a><emu-mods><emu-params>[?Yield, ?Tagged]</emu-params></emu-mods></emu-nt><emu-nt params="?Tagged"><a href="#prod-TemplateTail">TemplateTail</a><emu-mods><emu-params>[?Tagged]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-nt params="Yield, Tagged"><a href="#prod-TemplateSpans">TemplateSpans</a><emu-mods><emu-params>[Yield, Tagged]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="57fe6188"><emu-nt><a href="#prod-TemplateTail">TemplateTail</a></emu-nt></emu-rhs>
+    <emu-rhs a="9c7d7be0"><emu-nt params="?Yield, ?Tagged"><a href="#prod-TemplateMiddleList">TemplateMiddleList</a><emu-mods><emu-params>[?Yield, ?Tagged]</emu-params></emu-mods></emu-nt><emu-nt><a href="#prod-TemplateTail">TemplateTail</a></emu-nt></emu-rhs>
 </emu-production>
 <emu-production name="TemplateMiddleList" params="Yield, Tagged">
-    <emu-nt params="Yield, Tagged"><a href="#prod-TemplateMiddleList">TemplateMiddleList</a><emu-mods><emu-params>[Yield, Tagged]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="88d7e212"><emu-nt params="?Tagged"><a href="#prod-TemplateMiddle">TemplateMiddle</a><emu-mods><emu-params>[?Tagged]</emu-params></emu-mods></emu-nt><emu-nt params="In, ?Yield"><a href="https://tc39.github.io/ecma262/#prod-Expression">Expression</a><emu-mods><emu-params>[In, ?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
-    <emu-rhs a="69e3720e"><emu-nt params="?Yield, ?Tagged"><a href="#prod-TemplateMiddleList">TemplateMiddleList</a><emu-mods><emu-params>[?Yield, ?Tagged]</emu-params></emu-mods></emu-nt><emu-nt params="?Tagged"><a href="#prod-TemplateMiddle">TemplateMiddle</a><emu-mods><emu-params>[?Tagged]</emu-params></emu-mods></emu-nt><emu-nt params="In, ?Yield"><a href="https://tc39.github.io/ecma262/#prod-Expression">Expression</a><emu-mods><emu-params>[In, ?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-nt params="Yield, Tagged"><a href="#prod-TemplateMiddleList">TemplateMiddleList</a><emu-mods><emu-params>[Yield, Tagged]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="343328ef"><emu-nt><a href="#prod-TemplateMiddle">TemplateMiddle</a></emu-nt><emu-nt params="In, ?Yield"><a href="https://tc39.github.io/ecma262/#prod-Expression">Expression</a><emu-mods><emu-params>[In, ?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="f488cd27"><emu-nt params="?Yield, ?Tagged"><a href="#prod-TemplateMiddleList">TemplateMiddleList</a><emu-mods><emu-params>[?Yield, ?Tagged]</emu-params></emu-mods></emu-nt><emu-nt><a href="#prod-TemplateMiddle">TemplateMiddle</a></emu-nt><emu-nt params="In, ?Yield"><a href="https://tc39.github.io/ecma262/#prod-Expression">Expression</a><emu-mods><emu-params>[In, ?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
 </emu-production></emu-grammar>
   </ins>
 </emu-clause>
+
+
+<ins class="block">
+<emu-clause id="sec-static-semantics-template-early-errors">
+  <h1><span class="secnum">4</span>Static Semantics: Early Errors<span class="utils"><span class="anchor"><a href="#sec-static-semantics-template-early-errors">#</a></span></span></h1>
+  <emu-grammar><emu-production name="TemplateLiteral" params="Yield, Tagged" collapsed="">
+    <emu-nt params="Yield, Tagged"><a href="#prod-TemplateLiteral">TemplateLiteral</a><emu-mods><emu-params>[Yield, Tagged]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="7bf3ad2b"><emu-nt><a href="#prod-NoSubstitutionTemplate">NoSubstitutionTemplate</a></emu-nt></emu-rhs>
+</emu-production></emu-grammar>
+  <ul>
+    <li>
+      It is a Syntax Error if the Tagged parameter was set and <emu-nt><a href="#prod-NoSubstitutionTemplate">NoSubstitutionTemplate</a></emu-nt> contains <emu-nt><a href="#prod-NotEscapeSequence">NotEscapeSequence</a></emu-nt>.
+    
+    </li>
+  </ul>
+
+  <emu-grammar><emu-production name="SubstitutionTemplate" params="Yield, Tagged" collapsed="">
+    <emu-nt params="Yield, Tagged"><a href="#prod-SubstitutionTemplate">SubstitutionTemplate</a><emu-mods><emu-params>[Yield, Tagged]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="afd08699"><emu-nt><a href="#prod-TemplateHead">TemplateHead</a></emu-nt><emu-nt params="In, ?Yield"><a href="https://tc39.github.io/ecma262/#prod-Expression">Expression</a><emu-mods><emu-params>[In, ?Yield]</emu-params></emu-mods></emu-nt><emu-nt params="?Yield, ?Tagged"><a href="#prod-TemplateSpans">TemplateSpans</a><emu-mods><emu-params>[?Yield, ?Tagged]</emu-params></emu-mods></emu-nt></emu-rhs>
+</emu-production></emu-grammar>
+  <ul>
+    <li>
+      It is a Syntax Error if the Tagged parameter was set and <emu-nt><a href="#prod-TemplateHead">TemplateHead</a></emu-nt> contains <emu-nt><a href="#prod-NotEscapeSequence">NotEscapeSequence</a></emu-nt>.
+    
+    </li>
+  </ul>
+
+  <emu-grammar><emu-production name="TemplateSpans" params="Yield, Tagged" collapsed="">
+    <emu-nt params="Yield, Tagged"><a href="#prod-TemplateSpans">TemplateSpans</a><emu-mods><emu-params>[Yield, Tagged]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="57fe6188"><emu-nt><a href="#prod-TemplateTail">TemplateTail</a></emu-nt></emu-rhs>
+</emu-production></emu-grammar>
+  <ul>
+    <li>
+      It is a Syntax Error if the Tagged parameter was set and <emu-nt><a href="#prod-TemplateTail">TemplateTail</a></emu-nt> contains <emu-nt><a href="#prod-NotEscapeSequence">NotEscapeSequence</a></emu-nt>.
+    
+    </li>
+  </ul>
+
+  <emu-grammar><emu-production name="TemplateMiddleList" params="Yield, Tagged">
+    <emu-nt params="Yield, Tagged"><a href="#prod-TemplateMiddleList">TemplateMiddleList</a><emu-mods><emu-params>[Yield, Tagged]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="343328ef"><emu-nt><a href="#prod-TemplateMiddle">TemplateMiddle</a></emu-nt><emu-nt params="In, ?Yield"><a href="https://tc39.github.io/ecma262/#prod-Expression">Expression</a><emu-mods><emu-params>[In, ?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="f488cd27"><emu-nt params="?Yield, ?Tagged"><a href="#prod-TemplateMiddleList">TemplateMiddleList</a><emu-mods><emu-params>[?Yield, ?Tagged]</emu-params></emu-mods></emu-nt><emu-nt><a href="#prod-TemplateMiddle">TemplateMiddle</a></emu-nt><emu-nt params="In, ?Yield"><a href="https://tc39.github.io/ecma262/#prod-Expression">Expression</a><emu-mods><emu-params>[In, ?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+</emu-production></emu-grammar>
+  <ul>
+    <li>
+      It is a Syntax Error if the Tagged parameter was set and <emu-nt><a href="#prod-TemplateMiddle">TemplateMiddle</a></emu-nt> contains <emu-nt><a href="#prod-NotEscapeSequence">NotEscapeSequence</a></emu-nt>.
+    
+    </li>
+  </ul>
+</emu-clause>
+</ins>
 
 <!-- es6num="12.2.9.1" -->
 <!-- <emu-clause id="sec-static-semantics-templatestrings">
@@ -781,7 +691,7 @@ tag<span class="hljs-string">`\unicode and \u{55}`</span></code></pre>
 
 <!-- es6num="12.3" -->
 <emu-clause id="sec-left-hand-side-expressions">
-  <h1><span class="secnum">6</span>(<a href="https://tc39.github.io/ecma262/#sec-left-hand-side-expressions">12.3</a>) Left-Hand-Side Expressions<span class="utils"><span class="anchor"><a href="#sec-left-hand-side-expressions">#</a></span></span></h1>
+  <h1><span class="secnum">5</span>(<a href="https://tc39.github.io/ecma262/#sec-left-hand-side-expressions">12.3</a>) Left-Hand-Side Expressions<span class="utils"><span class="anchor"><a href="#sec-left-hand-side-expressions">#</a></span></span></h1>
   <h2>Syntax</h2>
 
   <emu-production name="MemberExpression" params="Yield" id="prod-MemberExpression">
